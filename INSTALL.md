@@ -25,7 +25,7 @@ When you first start work on FarmData2 you will need to create a new FarmData2 C
 
 2. Login to your [GitHub account](https://github.com/login).
 
-3. Fork the [upstream FarmData2 repository](https://github.com/FarmData2/FarmData2) in GitHub.
+3. Fork the [upstream FarmData2 repository](https://github.com/Dickinson-comp290/FD2-School-Kit-F26) in GitHub.
 
 4. Find your fork of the FarmData2 repository in [your GitHub space](https://github.com/).
 
