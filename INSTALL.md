@@ -11,7 +11,7 @@ If you run into problems during the install visit the dedicated [install channel
 <!-- vale RedHat.Slash = NO -->
 <!-- Allow hours/month etc. -->
 
-The FarmData2 development environment runs in GitHub codespaces. GitHub provides all users with 120 core hours/month and 15 GB/month of storage at no cost. This is enough free time and storage to run the FarmData2 development environment for 60 hours per month. [Students](https://github.com/education/students) and [teachers](https://github.com/education/teachers) can join to [GitHub Education](https://github.com/education) and receive 180 core hours/month and 20 GB/month of storage (plus other educational benefits), which is enough to run the environment for 80 hours/month. 
+The FarmData2 development environment runs in GitHub codespaces. GitHub provides all users with 120 core hours/month and 15 GB/month of storage at no cost. This is enough free time and storage to run the FarmData2 development environment for 60 hours per month. [Students](https://github.com/education/students) and [teachers](https://github.com/education/teachers) can join [GitHub Education](https://github.com/education) and receive 180 core hours/month and 20 GB/month of storage (plus other educational benefits).
 
 If you find you are exceeding your allotted Codespaces usage limits you can [add payment information](https://docs.github.com/en/billing/how-tos/set-up-payment/manage-payment-info) and [setup budgets](https://docs.github.com/en/billing/how-tos/set-up-budgets) to place monthly limits on costs.
 
@@ -21,7 +21,7 @@ If you find you are exceeding your allotted Codespaces usage limits you can [add
 
 When you first start work on FarmData2 you will need to create a new FarmData2 Codespace.
 
-1. Use a [Browser based on Chromium](<https://en.wikipedia.org/wiki/Chromium_(web_browser)#Browsers_based_on_Chromium>). Github Codespaces is optimized for chromium based browsers and some features may not work if a non-chromium browser is used.
+1. Use a [Browser based on Chromium](<https://en.wikipedia.org/wiki/Chromium_(web_browser)#Browsers_based_on_Chromium>). Github Codespaces is optimized for chromium based browsers and some features might not work if a non-chromium browser is used.
 
 2. Login to your [GitHub account](https://github.com/login).
 
@@ -29,10 +29,10 @@ When you first start work on FarmData2 you will need to create a new FarmData2 C
 
 4. Find your fork of the FarmData2 repository in [your GitHub space](https://github.com/).
 
-5. Click the <!-- vale RedHat.DoNotUseTerms = NO : the button label is also given -->green<!-- vale RedHat.DoNotUseTerms = YES --> "Code" button:  
+5. Select the <!-- vale RedHat.DoNotUseTerms = NO : the button label is also given -->green<!-- vale RedHat.DoNotUseTerms = YES --> "Code" button:  
    <img src="docs/install/images/code-button.png" alt='The GitHub "Code" Button.' width=100 />
 
-6. Click the "Codespaces" tab and then click the <!-- vale RedHat.DoNotUseTerms = NO : the button label is also given -->green<!-- vale RedHat.DoNotUseTerms = YES --> button labeled "Create codespace on development."  
+6. Select the "Codespaces" tab and then select the <!-- vale RedHat.DoNotUseTerms = NO : the button label is also given -->green<!-- vale RedHat.DoNotUseTerms = YES --> button labeled "Create codespace on development."  
    <img src="docs/install/images/codespace-button.png" alt='The GitHub "Create codespace on development" button.' width=400 />
 
 7. After a few moments the browser will change to show a Visual Studio Code interface and a small dialog box will appear in the lower right corner indicating that the GitHub Codespace is being built.  
@@ -40,13 +40,23 @@ When you first start work on FarmData2 you will need to create a new FarmData2 C
 
 8. Wait patiently… Creating the new Codespace takes some time (up to 10 minutes).
 
-   - You can click the <!-- vale RedHat.DoNotUseTerms = NO : the button label is also given -->blue<!-- vale RedHat.DoNotUseTerms = YES --> "Building codespace…" text to display the output of the build process in the terminal if you want to see what is happening as the Codespace is built.
+   - You can select the <!-- vale RedHat.DoNotUseTerms = NO : the button label is also given -->blue<!-- vale RedHat.DoNotUseTerms = YES --> "Building codespace…" text to display the output of the build process in the terminal if you want to see what is happening as the Codespace is built.
 
-9. About half way through the installation the following message will be displayed in the terminal indicating the development container has been created and is now being configured:
+<!-- vale RedHat.Symbols = NO --> <!--: the & symbol appears on the button -->
 
-   <img src="docs/install/images/post-create-running.png" alt='Message indicating that the postCreate command is running.' width=600 />
+9. Watch for the "Trust authors" dialog to appear and select the <!-- vale RedHat.DoNotUseTerms = NO : the button label is also given -->green<!-- vale RedHat.DoNotUseTerms = YES --> "Trust Folder & Continue" button.
+   <img src="docs/install/images/trust-authors-dialog.png" alt='The Trust Authors dialog box providing the option to "Trust Folder & Continue."' width=400 />
 
-10. When the Codespace is ready for use the following message will be displayed in the terminal:
+   - This dialog is displayed because the devcontainer configuration that creates the Codespace runs scripts. The `devcontainer.json` configuration and the scripts that are run can be found in the `.devcontainer` directory if you want to inspect them before trusting the folder.
+   - If the dialog disappear before you trust the folder you will need to delete your Codespace re-create a new one so that it will be created properly.
+
+<!-- vale RedHat.Symbols = YES -->
+
+10. About half way through the installation the following message will be displayed in the terminal indicating the development container has been created and is now being configured:
+
+    <img src="docs/install/images/post-create-running.png" alt='Message indicating that the postCreate command is running.' width=600 />
+
+11. When the Codespace is ready for use the following message will be displayed in the terminal:
 
     ```text
     ===============================================
@@ -86,7 +96,7 @@ The FarmData2 Development Environment has four main elements:
 - A **noVNC server** that provides access to a GUI desktop that displays tests that are run the Cypress GUI test runner.
 - The **documentation server** that is used to view the FarmData2 documentation.
 
-These elements are accessed though the Codespace running in the browser.
+These elements are accessed though the Codespace running in the browser. The following sections will introduce you to each of these elements and have to perform a few actions to confirm that they are working correctly.
 
 ### The Visual Studio Code IDE
 
@@ -105,9 +115,9 @@ If you are new to the Visual Studio Code IDE, you might find the following resou
 
 The running instance of farmOS with the FarmData2 modules installed is accessed from the _PORTS_ tab in the Visual Studio Code IDE.
 
-1. Click "PORTS" at the top of the _Panel_, which is displayed at the bottom of the window.
+1. Select "PORTS" at the top of the _Panel_, which is displayed at the bottom of the window.
 
-2. Point at the "Forwarded Address" for the "farmOS (443)" port and click the small globe icon.  
+2. Point at the "Forwarded Address" for the "farmOS (443)" port and select the small globe icon.  
    <img src="docs/install/images/open-farmOS.png" alt='Opening the farmOS instance.' width=600 />
 
 3. The farmOS login window will open in a new browser tab.  
@@ -118,24 +128,24 @@ The running instance of farmOS with the FarmData2 modules installed is accessed 
    - Username: `manager1`
    - Password: `farmdata2`
 
-5. Logging in will take you to the farmOS Dashboard.  
+5. If everything is working correctly, logging in will take you to the farmOS Dashboard.
    <img src="docs/install/images/farmOS-dashboard.png" alt='The farmOS dashboard.' width=700 />
 
-   - In smaller browser windows the farmOS menu including _FarmData2_, _FD2 Examples_ and _FD2 School_ is hidden by default. Click the "more options" icon (&#9776;) in the top left corner of the window to display the farmOS menu.
+   - In smaller browser windows the farmOS menu including _FarmData2_, _FD2 Examples_ and _FD2 School_ is hidden by default. Select the "more options" icon (&#9776;) in the top left corner of the window to display the farmOS menu.
 
-6. If you are a new contributor you can take [A Quick Tour of FarmData2](docs/contributing/tour.md) to familiarize yourself with farmOS and the FarmData2 features.
+6. When you return to the "Contributing Guide" after completing this installation you will have the chance to take "A Quick Tour of FarmData2" to more fully familiarize yourself with farmOS and the FarmData2 features.
 
 ### The noVNC Server
 
 The noVNC Server provides a Linux desktop interface to the running Codespace that is used to display FarmData2 tests that are run in the Cypress GUI.
 
-1. Click "PORTS" at the top of the _Panel_, which is displayed at the bottom of the window.
+1. Select "PORTS" at the top of the _Panel_, which is displayed at the bottom of the window.
 
-2. Point at the "Forwarded Address" for the "noVNC (6901)" port and click the small globe icon.
+2. Point at the "Forwarded Address" for the "noVNC (6901)" port and select the small globe icon.
 
 3. The noVNC window will open in a new browser tab.
 
-4. Click the "Connect" button to open the GUI desktop in noVNC.
+4. Select the "Connect" button to open the GUI desktop in noVNC.
 
    - This desktop will initially be empty as no tests are running.
 
@@ -149,34 +159,36 @@ The noVNC Server provides a Linux desktop interface to the running Codespace tha
 
    - After a few moments the Cypress testing GUI will open.
 
-7. Click the "Start E2E Testing in Electron" button.
+7. Select the "Start E2E Testing in Electron" button.
 
-8. Click `direct_seeding.BedFeet.e2e.cy.js` to observe a test running in the Cypress testing GUI.
+8. Select `direct_seeding.BedFeet.e2e.cy.js` to observe a test running in the Cypress testing GUI.
 
-9. Click the "X" in the upper right corners of the Cypress testing windows to close them.
+9. Select the "X" in the upper right corners of the Cypress testing windows to close them.
 
 10. In larger browser windows the Linux desktop will not fill the available space. To make the desktop resize to fill the browser window:
 
     1. Open the "noVNC menu tab" at the left edge of the window.  
        <img src="docs/install/images/noVNC-menu.png" alt='The noVNC menu tab.' width=50 />
 
-    2. Click the "Gear" icon and set the "Scaling Mode" to "Remote resizing."  
+    2. Select the "Gear" icon choose "Remote resizing" as the "Scaling Mode."  
        <img src="docs/install/images/noVNC-remote-resizing.png" alt='Setting the noVNC scaling mode to "Remote resizing."' width=250 />
 
 ### The Documentation Server
 
 The documentation server provides convenient access to the FarmData2 documentation.
 
-1. Click "PORTS" at the top of the _Panel_, which is displayed at the bottom of the window.
+1. Select "PORTS" at the top of the _Panel_, which is displayed at the bottom of the window.
 
-2. Point at the "Forwarded Address" for the "docs (8082)" port and click the small globe icon.
+2. Point at the "Forwarded Address" for the "docs (8082)" port and select the small globe icon.
 
 3. The documentation server will open in a new browser tab and display the "Index of the FarmData2 Documentation."
 
-4. Briefly browse the topics to familiarize yourself with the documentation that is available.
+4. When you return to the "Contributing Guide" after completing this installation you will have the chance to browse the documentation to get a feel for what it contains.
 
 <!-- vale RedHat.Definitions = YES -->
 
 ## Using Visual Studio Code Locally
 
-You can also create and work within a Codespaces by using your local Visual Studio Code IDE. If you are interested in doing so, see the [Using GitHub Codespaces in Visual Studio Code](https://docs.github.com/en/codespaces/developing-in-a-codespace/using-github-codespaces-in-visual-studio-code) documentation from GitHub.
+You can also create and work within a Codespaces by using your local Visual Studio Code IDE. This is not required, but if you are interested in doing so, see the [Using GitHub Codespaces in Visual Studio Code](https://docs.github.com/en/codespaces/developing-in-a-codespace/using-github-codespaces-in-visual-studio-code) documentation from GitHub.
+
+<!-- vale Microsoft.UIVerbs = YES -->
