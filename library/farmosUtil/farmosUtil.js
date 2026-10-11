@@ -77,6 +77,9 @@ export * from './farmosUtil.greenhouses.js';
 // Export functions related to log category taxonomy terms.
 export * from './farmosUtil.logCategories.js';
 
+// Export functions related to log type observation.
+export * from './farmosUtil.observation.js';
+
 // Export functions related to user permissions.
 export * from './farmosUtil.permissions.js';
 
