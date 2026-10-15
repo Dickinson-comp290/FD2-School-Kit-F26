@@ -8,7 +8,7 @@
       id="component-group"
       data-cy="component-group"
     >
-      <!-- Add BootstrapVueNext components here to build this component. 
+      <!-- Add BootstrapVueNext components or FarmData2 components here to build this component. 
           Other components in the `components/` directory provide useful examples.
 
           Every element that might be used in a test should have an `id` and a 
