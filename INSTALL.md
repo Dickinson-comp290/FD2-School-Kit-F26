@@ -38,7 +38,7 @@ When you first start work on FarmData2 you will need to create a new FarmData2 C
 7. After a few moments the browser will change to show a Visual Studio Code interface and a small dialog box will appear in the lower right corner indicating that the GitHub Codespace is being built.  
    <img src="docs/install/images/building-codespace.png" alt='Dialog box indicating that the Codespace is being built.' width=400 />
 
-8. Wait patiently… Creating the new Codespace takes some time (up to 10 minutes).
+8. Wait patiently. Creating the new Codespace can take up to 10 minutes.
 
    - You can select the <!-- vale RedHat.DoNotUseTerms = NO : the button label is also given -->blue<!-- vale RedHat.DoNotUseTerms = YES --> "Building codespace…" text to display the output of the build process in the terminal if you want to see what is happening as the Codespace is built.
 
@@ -74,6 +74,11 @@ When you first start work on FarmData2 you will need to create a new FarmData2 C
     - Notes:
       - Starting to work before this message is displayed might result in errors.
       - If any errors have occurred the message will contain information about steps to take.
+
+12. Use the following links to install some useful Vue.js browser extensions:
+
+    - [Vue.js devtools](https://chromewebstore.google.com/detail/vuejs-devtools/iaajmlceplecbljialhhkmedjlpdblhp)
+    - [Vue force dev](https://chromewebstore.google.com/detail/vue-force-dev/oohfffedbkbjnbpbbedapppafmlnccmb)
 
 ## Stopping / Restarting / Deleting your FarmData2 Codespace
 
