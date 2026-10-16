@@ -75,15 +75,12 @@
           v-on:ready="createdCount++"
         />
 
-        <!-- 
-          Add additional form elements here.
-        
-          See the FarmData2 documentation for links to the documentation
-          for the custom FarmData2 Vue Components.
-
-          See the BootstrapVueNext documentation for links to the 
-          documentation for its Vue Components.
-        -->
+        <!-- Activity Type -->
+        <SelectorBase
+          id="activity-observation-type"
+          data-cy="activity-observation-type"
+          v-bind:options="['A', 'B', 'C']"
+        />
 
         <hr />
         <!-- Comment Box -->
@@ -134,12 +131,14 @@
   import DateSelector from '@comps/DateSelector/DateSelector.vue';
   import CommentBox from '@comps/CommentBox/CommentBox.vue';
   import SubmitResetButtons from '@comps/SubmitResetButtons/SubmitResetButtons.vue';
+  import SelectorBase from '@comps/SelectorBase/SelectorBase.vue';
   import * as uiUtil from '@libs/uiUtil/uiUtil.js';
   import { lib } from './lib.js';
 
   export default {
     components: {
       DateSelector,
+      SelectorBase,
       CommentBox,
       SubmitResetButtons,
     },
