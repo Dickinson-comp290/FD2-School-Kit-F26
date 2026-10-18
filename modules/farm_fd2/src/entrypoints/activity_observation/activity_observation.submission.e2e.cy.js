@@ -16,6 +16,7 @@ describe('Activity Observation: Submission tests', () => {
   function submitForm() {
     cy.get('[data-cy="date-input"]').clear();
     cy.get('[data-cy="date-input"]').type('1950-01-02');
+    cy.get('[data-cy="selector-input"]').select('Seeding');
 
     /*
      * TODO: Add code to fill in values for other fields as they
@@ -77,6 +78,7 @@ describe('Activity Observation: Submission tests', () => {
 
       let formData = spy.getCall(0).args[0];
       expect(formData.date).to.equal('1950-01-02');
+      expect(formData.activity).to.equal('Seeding');
       /*
        * TODO: Add checks for the other parts of the formData
        *       as they are added to the input form.
@@ -86,6 +88,7 @@ describe('Activity Observation: Submission tests', () => {
 
     // Check that the "sticky" parts of the form are not reset...
     cy.get('[data-cy="date-input"]').should('have.value', '1950-01-02');
+    cy.get('[data-cy="selector-input"]').should('have.value', 'Seeding');
 
     // Check that the other parts of the form are reset.
     cy.get('[data-cy="comment-input"]').should('have.value', '');

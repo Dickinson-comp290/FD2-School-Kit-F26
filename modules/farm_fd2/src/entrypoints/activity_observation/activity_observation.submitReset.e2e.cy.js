@@ -27,6 +27,7 @@ describe('Activity Observation: Submit/Reset Buttons component', () => {
 
   function populateForm() {
     cy.get('[data-cy="date-input"]').type(dayjs().format('1999-01-02'));
+    cy.get('[data-cy="selector-input"]').select('Seeding');
 
     /*
      * TODO: Populate additional elements of the form with valid values.
@@ -46,6 +47,18 @@ describe('Activity Observation: Submit/Reset Buttons component', () => {
 
     cy.get('[data-cy="date-input"]').type('2020-01-01');
     cy.get('[data-cy="date-input"]').blur();
+    cy.get('[data-cy="submit-button"]').should('be.enabled');
+  });
+
+  it('Invalid activity disables submit', () => {
+    populateForm();
+    cy.get('[data-cy="submit-button"]').should('be.enabled');
+
+    cy.get('[data-cy="selector-input"]').select([]);
+    cy.get('[data-cy="submit-button"]').click();
+    cy.get('[data-cy="submit-button"]').should('be.disabled');
+
+    cy.get('[data-cy="selector-input"]').select('Seeding');
     cy.get('[data-cy="submit-button"]').should('be.enabled');
   });
 
@@ -78,7 +91,7 @@ describe('Activity Observation: Submit/Reset Buttons component', () => {
      */
 
     cy.get('[data-cy="comment-input"]').should('have.value', '');
-
+    cy.get('[data-cy="selector-input"]').should('have.value', null);
     cy.get('[data-cy="submit-button"]').should('be.enabled');
   });
 });

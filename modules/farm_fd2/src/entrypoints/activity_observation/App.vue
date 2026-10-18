@@ -79,7 +79,18 @@
         <SelectorBase
           id="activity-observation-type"
           data-cy="activity-observation-type"
-          v-bind:options="['A', 'B', 'C']"
+          required
+          label="Type"
+          invalidFeedbackText="An activity type is required."
+          v-bind:options="activityTypes"
+          v-model:selected="form.activity"
+          v-bind:showValidityStyling="validity.show"
+          v-on:valid="
+            (valid) => {
+              validity.activity = valid;
+            }
+          "
+          v-on:ready="createdCount++"
         />
 
         <hr />
@@ -144,6 +155,8 @@
     },
     data() {
       return {
+        activityTypes: ['Seeding', 'Transplanting', 'Tillage'],
+
         /*
          * The `data.form` object is used to hold all of the data that is
          * collected from the form. This data is stored in a single
@@ -156,6 +169,8 @@
          */
         form: {
           date: dayjs().format('YYYY-MM-DD'),
+          type: null,
+          activity: null,
           comment: null,
         },
         /*
@@ -181,6 +196,7 @@
         validity: {
           show: false,
           date: false,
+          activity: false,
           comment: false,
         },
 
@@ -237,7 +253,7 @@
        * when all of the components are fully ready.
        */
       pageDoneLoading() {
-        return this.createdCount == 4;
+        return this.createdCount == 5;
       },
       /*
        * The Submit button will be enabled when this property is true.
@@ -379,6 +395,7 @@
         if (!sticky) {
           /* Reset is not sticky, so also reset the sticky values. */
           this.form.date = dayjs().format('YYYY-MM-DD');
+          this.form.activity = null;
         }
 
         /* Always reset the non-sticky values. */
