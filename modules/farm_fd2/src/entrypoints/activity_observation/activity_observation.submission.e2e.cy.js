@@ -78,7 +78,7 @@ describe('Activity Observation: Submission tests', () => {
 
       let formData = spy.getCall(0).args[0];
       expect(formData.date).to.equal('1950-01-02');
-      expect(formData.activity).to.equal('Seeding');
+      expect(formData.type).to.equal('Seeding');
       /*
        * TODO: Add checks for the other parts of the formData
        *       as they are added to the input form.

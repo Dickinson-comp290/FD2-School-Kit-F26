@@ -83,11 +83,11 @@
           label="Type"
           invalidFeedbackText="An activity type is required."
           v-bind:options="activityTypes"
-          v-model:selected="form.activity"
+          v-model:selected="form.type"
           v-bind:showValidityStyling="validity.show"
           v-on:valid="
             (valid) => {
-              validity.activity = valid;
+              validity.type = valid;
             }
           "
           v-on:ready="createdCount++"
@@ -170,7 +170,6 @@
         form: {
           date: dayjs().format('YYYY-MM-DD'),
           type: null,
-          activity: null,
           comment: null,
         },
         /*
@@ -195,8 +194,8 @@
          */
         validity: {
           show: false,
+          type: false,
           date: false,
-          activity: false,
           comment: false,
         },
 
@@ -395,7 +394,7 @@
         if (!sticky) {
           /* Reset is not sticky, so also reset the sticky values. */
           this.form.date = dayjs().format('YYYY-MM-DD');
-          this.form.activity = null;
+          this.form.type = null;
         }
 
         /* Always reset the non-sticky values. */
