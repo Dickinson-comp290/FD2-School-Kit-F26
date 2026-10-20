@@ -14,3 +14,4 @@
   - ⚠️ The primary criterion is met and more than 75% of its nested secondary criteria are met, but at least one secondary criterion is unmet.
   - ❌ The primary criterion is not met, or less than 25% of its nested secondary criteria are met.
 - Return only the required heading-and-table sections. Do not add a final verdict, extra findings, or a summary outside the tables.
+- If reviewing a the branch in a pull request, post the result table as a comment on the pull request. If reviewing a branch in a local workspace, post the result table in the chat.
