@@ -8,7 +8,9 @@
 - Produce one table for each level-two heading under the `Criteria` in the `agent.md` file. Put the heading text immediately before its table.
 - Each table must have exactly these columns, in this order: `Criteria`, `Status`, `Evidence`.
 - Treat each top-level bullet under a heading as one primary criterion.
-- Create exactly one table row for each primary criterion. Never combine primary criteria into a single row or create separate rows for secondary criteria.
+- Create exactly one table row for each primary criterion.
+- Never combine multiple primary criteria into a single row.
+- Never create separate rows for secondary criteria.
 - Summarize the primary criterion in the `Criteria` cell. In `Evidence`, state whether the primary criterion is met and address each nested secondary criterion, including unmet ones. Cite relevant files and line numbers when available.
 - Assign status using these rules:
   - ✅ The primary criterion and every nested secondary criterion are met.
