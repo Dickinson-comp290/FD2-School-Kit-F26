@@ -7,11 +7,12 @@
 - Ignore typos and minor naming differences when deciding whether a criterion is met, unless they prevent the described behavior from working.
 - Produce one table for each level-two heading under the `Criteria` in the `agent.md` file. Put the heading text immediately before its table.
 - Each table must have exactly these columns, in this order: `Criteria`, `Status`, `Evidence`.
-- Treat each top-level bullet under a heading as one primary criterion. Create exactly one table row for each primary criterion. Do not combine primary criteria or create separate rows for secondary criteria.
-- Summarize the primary criterion in the `Criteria` cell. In `Evidence`, state whether each criterion is met and address every nested secondary criterion, including unmet ones. Cite relevant files and line numbers when available.
+- Treat each top-level bullet under a heading as one primary criterion.
+- Create exactly one table row for each primary criterion. Never combine primary criteria into a single row or create separate rows for secondary criteria.
+- Summarize the primary criterion in the `Criteria` cell. In `Evidence`, state whether the primary criterion is met and address each nested secondary criterion, including unmet ones. Cite relevant files and line numbers when available.
 - Assign status using these rules:
   - ✅ The primary criterion and every nested secondary criterion are met.
   - ⚠️ The primary criterion is met and more than 75% of its nested secondary criteria are met, but at least one secondary criterion is unmet.
   - ❌ The primary criterion is not met, or less than 25% of its nested secondary criteria are met.
-- Return only the required heading-and-table sections. Do not add a final verdict, extra findings, or a summary outside the tables.
-- If reviewing a the branch in a pull request, post the result table as a comment on the pull request. If reviewing a branch in a local workspace, post the result table in the chat.
+- Include only the required heading-and-table sections. Do not add a final verdict, extra findings, or a summary outside the tables.
+- If reviewing the branch in a pull request, post the full table as a comment on the pull request. If reviewing a branch in a local workspace, post the full table in the chat.
