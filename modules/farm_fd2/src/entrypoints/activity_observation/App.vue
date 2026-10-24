@@ -144,6 +144,7 @@
   import SubmitResetButtons from '@comps/SubmitResetButtons/SubmitResetButtons.vue';
   import SelectorBase from '@comps/SelectorBase/SelectorBase.vue';
   import * as uiUtil from '@libs/uiUtil/uiUtil.js';
+  import * as farmosUtil from '@libs/farmosUtil/farmosUtil.js';
   import { lib } from './lib.js';
 
   export default {
@@ -155,7 +156,7 @@
     },
     data() {
       return {
-        activityTypes: ['Seeding', 'Transplanting', 'Tillage'],
+        activityTypes: [],
 
         /*
          * The `data.form` object is used to hold all of the data that is
@@ -411,7 +412,11 @@
      * by the individual Vue Components used in the page and this hook
      * will simply increment `this.createdCount`.
      */
-    created() {
+    async created() {
+
+      let logCategoryObjects = await farmosUtil.getLogCategories();
+      this.activityTypes = logCategoryObjects.map((category) => category.attributes.name);
+
       this.createdCount++;
 
       if (window.Cypress) {
