@@ -79,6 +79,7 @@ When you first start work on FarmData2 you will need to create a new FarmData2 C
 
     - [Vue.js devtools](https://chromewebstore.google.com/detail/vuejs-devtools/iaajmlceplecbljialhhkmedjlpdblhp)
     - [Vue force dev](https://chromewebstore.google.com/detail/vue-force-dev/oohfffedbkbjnbpbbedapppafmlnccmb)
+    - [JSON Formatter](https://chromewebstore.google.com/detail/json-formatter/bcjindcccaagfpapjjmafapmmgkkhgoa)
 
 ## Stopping / Restarting / Deleting your FarmData2 Codespace
 
