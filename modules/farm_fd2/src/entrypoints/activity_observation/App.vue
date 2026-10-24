@@ -155,7 +155,7 @@
     },
     data() {
       return {
-        activityTypes: ['Seeding', 'Transplanting', 'Tillage'],
+        activityTypes: ['seeding', 'transplanting', 'tillage'],
 
         /*
          * The `data.form` object is used to hold all of the data that is

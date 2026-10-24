@@ -27,7 +27,7 @@ describe('Activity Observation: Submit/Reset Buttons component', () => {
 
   function populateForm() {
     cy.get('[data-cy="date-input"]').type(dayjs().format('1999-01-02'));
-    cy.get('[data-cy="selector-input"]').select('Seeding');
+    cy.get('[data-cy="selector-input"]').select('seeding');
 
     /*
      * TODO: Populate additional elements of the form with valid values.
@@ -58,7 +58,7 @@ describe('Activity Observation: Submit/Reset Buttons component', () => {
     cy.get('[data-cy="submit-button"]').click();
     cy.get('[data-cy="submit-button"]').should('be.disabled');
 
-    cy.get('[data-cy="selector-input"]').select('Seeding');
+    cy.get('[data-cy="selector-input"]').select('seeding');
     cy.get('[data-cy="submit-button"]').should('be.enabled');
   });
 
