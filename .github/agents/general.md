@@ -17,5 +17,4 @@
   - ⚠️ The primary criterion is met and more than 75% of its nested secondary criteria are met, but at least one secondary criterion is unmet.
   - ❌ The primary criterion is not met, or less than 25% of its nested secondary criteria are met.
 - Include only the required heading-and-table sections. Do not add a final verdict, extra findings, or a summary outside the tables.
-- If you are reviewing a pull request, post the exact results table as a comment on the pull request. Do not reformat, reword,summarize, or condense the table.
-- If you are reviewing a branch in a local workspace, post the full table in the chat.
+- Post the full exact results table to a PR comment or to the chat as appropriate. Do not reformat, reword, summarize, or condense the table.
