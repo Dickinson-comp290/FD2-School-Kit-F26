@@ -1,99 +1,49 @@
 import * as farmosUtil from '@libs/farmosUtil/farmosUtil';
 
 /**
- * TODO:
- *  - create the operation objects necessary to create the
- *    logs, assets and quantities needed by the form.
- *  - push each operation object to `ops`.
- *  - Update the JSDoc comments on the `submitForm` function below.
- *  - Complete the tasks in the TODO comments in the template below.
- *  - Delete the TODO comments.
- *  - Delete this comment block.
- */
-
-/**
- * Create the farmOS records (asset, quantities and log) to represent
- * ... TODO: update the description ....
+ * Create the farmOS records (e.g. assets, quantities, and logs) that are
+ * needed to represent the data in the form.  This function is called by
+ * the entry point's submit method and is passed the form object from the
+ * entry point.
  *
  * @param {Object} form the form containing the data from the entry point.
- * @returns {Promise} a promise that resolves when the records are successfully created.
- * The returned value is an object containing the asset, quantities and log that
- * were sent to the server.  This object has the following properties:
- * ```Javascript
- * {
- *   ... TODO: add attribute names and types. For example...
- *   sampleOp: {asset--plant},
- * }
- * ```
  * @throws {Error} if an error occurs while creating the farmOS records.
  */
 async function submitForm(form) {
   try {
-    let ops = [];
-
     /*
-     * This sampleOP creates a plant asset to illustrate how an operation works.
-     *
-     * TODO: Delete or customize this sampleOp and add new operations that
-     *       create the logs, assets and quantities needed by the new entry point.
-     *
-     *       See:
-     *         - the `modules/farm_fd2/src/entrypoints/tray_seeding/lib.js`
-     *           file for examples of using operation objects to create
-     *           logs, assets and quantities.
-     *
-     *         - the documentation for the `runTransaction` function in
-     *           `libraries/farmosUtil.js` for detailed information about
-     *           the operation objects.
+     * Create a `ZUCCHINI` plant asset as an example.
+     * This will need to be modified to create the actual
+     * assets, quantities and logs needed for the entry point.
      */
-    const sampleOp = {
-      name: 'sampleOp',
-      do: async () => {
-        /*
-         * Create and return the asset, log or quantity for
-         * this operation using the functions in farmosUtil.
-         */
-        return await farmosUtil.createPlantAsset(
-          form.date,
-          'ZUCCHINI', // Just for sampleOp because crop not in App.vue form.
-          form.comment
-        );
-      },
-      undo: async (results) => {
-        await farmosUtil.deletePlantAsset(results['sampleOp'].id);
-      },
-    };
-    // Add the operation to the ops for the transaction.
-    ops.push(sampleOp);
-
-    // Run all of the operations in ops as a transaction.
-    return await farmosUtil.runTransaction(ops);
+    return await farmosUtil.createPlantAsset(
+      form.date,
+      'ZUCCHINI',
+      form.comment
+    );
   } catch (error) {
     console.error('%ENTRY_POINT% lib.js:');
     console.error(error);
 
     let errorMsg = 'Error creating %ENTRY_POINT_TITLE% records.';
-
-    for (const key of Object.keys(error.results)) {
-      if (error.results[key]) {
-        errorMsg +=
-          '\n  Result of operation ' + key + ' could not be cleaned up.';
-        if (
-          error.results[key].attributes &&
-          error.results[key].attributes.name
-        ) {
-          errorMsg += '\n   Manually delete log or asset with:';
-          errorMsg += '\n     name: ' + error.results[key].attributes.name;
-        } else {
-          errorMsg += '\n   May be safely ignored';
-        }
-      }
-    }
-
     throw Error(errorMsg, error);
   }
 }
 
+// Export the submitForm function so that it can be used by the entry point's submit method.
 export const lib = {
   submitForm,
 };
+
+/*
+ * NOTE: If more than one log, asset or quantity is created then the submitForm
+ *       function should use the farmosUtil.runTransaction function to create all
+ *       of the logs, assets and quantities in a single transaction.  The runTransaction
+ *       function provides a rollback mechanism if errors occur during the creation of
+ *       any of the logs, assets or quantities.
+ *
+ *       See the farmosUtil.runTransaction function for details and an example.
+ *
+ *       Also see the lib.submitForm function in the tray_seeding and direct_seeding
+ *       entry points for examples of using runTransaction in actual entry points.
+ */
