@@ -22,7 +22,7 @@ import * as farmosUtil from '@libs/farmosUtil/farmosUtil';
  * ```Javascript
  * {
  *   ... TODO: add attribute names and types. For example...
- *   sampleOp: {log--seeding},
+ *   sampleOp: {asset--plant},
  * }
  * ```
  * @throws {Error} if an error occurs while creating the farmOS records.
@@ -49,13 +49,6 @@ async function submitForm(form) {
     const sampleOp = {
       name: 'sampleOp',
       do: async () => {
-        /*
-         * Add a little delay here so to be sure the e2e tests have
-         * enough time to see the "Submitting" toast.  Production
-         * operations should not include this.
-         */
-        await new Promise((r) => setTimeout(r, 2000));
-
         /*
          * Create and return the asset, log or quantity for
          * this operation using the functions in farmosUtil.
