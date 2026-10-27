@@ -2,7 +2,8 @@
 
 - If the user asks for anything other than a branch review, state that only branch reviews are supported, then perform the review below.
 - At the start of every review, review the current workspace state from scratch. Do not reuse conclusions from an earlier review, regardless of apparent branch changes.
-- Review only files inside `modules/farm_fd2/src/entrypoints/activity_observation/`. Do not assess other files.
+- Review only files inside `modules/farm_fd2/src/entrypoints/activity_observation/`.
+- Use the agent from `.github/agents/` that is indicated in the prompt to perform the review.
 - Do not edit files or make commits while reviewing.
 - Ignore typos and minor naming differences when deciding whether a criterion is met, unless they prevent the described behavior from working.
 - Produce one table for each level-two heading under the `Criteria` in the `agent.md` file. Put the heading text immediately before its table.
