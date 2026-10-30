@@ -1,7 +1,9 @@
 #!/bin/bash
 
-source colors.bash
-source lib.bash
+SCRIPT_PATH=$(readlink -f "$0")
+SCRIPT_DIR=$(dirname "$SCRIPT_PATH")
+source "$SCRIPT_DIR/colors.bash"
+source "$SCRIPT_DIR/lib.bash"
 
 function usage {
   echo "test.bash usage:"
@@ -82,8 +84,6 @@ cleanup() {
 trap cleanup SIGINT SIGTERM
 
 # Change into the main repo directory.
-SCRIPT_PATH=$(readlink -f "$0")                     # Path to this script.
-SCRIPT_DIR=$(dirname "$SCRIPT_PATH")                # Path to directory containing this script.
 REPO_ROOT_DIR=$(builtin cd "$SCRIPT_DIR/.." && pwd) # REPO root directory.
 safe_cd "$REPO_ROOT_DIR"
 
