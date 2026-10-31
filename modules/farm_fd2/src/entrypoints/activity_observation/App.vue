@@ -5,6 +5,11 @@
     the same and should be prefixed with the name of the entry point.
     Use the examples below as a guide when adding your own elements.
   -->
+  <SelectorBase
+    id="activity-observation-type"
+    data-cy="activity-observation-type"
+    v-bind:options="['A', 'B', 'C']"
+  />
   <div
     id="activity-observation"
     data-cy="activity-observation"
@@ -135,6 +140,7 @@
   import CommentBox from '@comps/CommentBox/CommentBox.vue';
   import SubmitResetButtons from '@comps/SubmitResetButtons/SubmitResetButtons.vue';
   import * as uiUtil from '@libs/uiUtil/uiUtil.js';
+  import SelectorBase from '@comps/SelectorBase/SelectorBase.vue';
   import { lib } from './lib.js';
 
   export default {
@@ -142,6 +148,7 @@
       DateSelector,
       CommentBox,
       SubmitResetButtons,
+      SelectorBase,
     },
     data() {
       return {
