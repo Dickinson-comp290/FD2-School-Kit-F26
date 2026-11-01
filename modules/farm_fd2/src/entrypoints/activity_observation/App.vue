@@ -8,7 +8,8 @@
   <SelectorBase
     id="activity-observation-type"
     data-cy="activity-observation-type"
-    v-bind:options="['A', 'B', 'C']"
+    v-bind:options="activityTypeOptions"
+    v-model:selected="form.activityType"
   />
   <div
     id="activity-observation"
@@ -217,6 +218,8 @@
          * property below for more information.
          */
         createdCount: 0,
+
+        activityTypeOptions: ['Seeding', 'Transplanting', 'Tillage'],
       };
     },
     computed: {
