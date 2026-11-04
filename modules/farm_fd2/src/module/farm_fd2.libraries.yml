@@ -82,3 +82,13 @@ soil_disturbance:
   css:
     component:
       style/style.css: {}
+
+activity_observation:
+  js:
+    activity_observation/activity_observation.js:
+      preprocess: false
+      minified: true
+      attributes: { type: 'module' }
+  css:
+    component:
+      style/style.css: {}
