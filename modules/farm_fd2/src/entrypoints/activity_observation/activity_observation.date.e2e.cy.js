@@ -7,6 +7,7 @@ describe('Activity Observation: Date Component', () => {
 
     cy.login('admin', 'admin');
     cy.visit('fd2/activity_observation/');
+
     cy.waitForPage();
   });
 
@@ -23,6 +24,7 @@ describe('Activity Observation: Date Component', () => {
   it('Date props are correct', () => {
     cy.get('[data-cy="date-required"]').should('be.visible');
     cy.get('[data-cy="date-label"]').should('have.text', 'Date:');
+    cy.get('[data-cy="date-required"]').should('exist');
     cy.get('[data-cy="date-input"]').should(
       'have.value',
       dayjs().format('YYYY-MM-DD')

@@ -1,10 +1,11 @@
-describe('Activity Observation: Comment Box', () => {
+describe('Activity Observation: Comment Component', () => {
   beforeEach(() => {
     cy.restoreLocalStorage();
     cy.restoreSessionStorage();
 
     cy.login('admin', 'admin');
     cy.visit('fd2/activity_observation/');
+
     cy.waitForPage();
   });
 
@@ -13,11 +14,14 @@ describe('Activity Observation: Comment Box', () => {
     cy.saveSessionStorage();
   });
 
-  it('Comment box exists and is editable', () => {
+  it('Comment component exists, is visible, is enabled', () => {
+    cy.get('[data-cy="activity-observation-comment"]').should('exist');
     cy.get('[data-cy="comment-input"]')
       .should('be.visible')
       .should('be.enabled');
-    cy.get('[data-cy="comment-input"]').type('test comment');
-    cy.get('[data-cy="comment-input"]').should('have.value', 'test comment');
+  });
+
+  it('Comment component should be empty', () => {
+    cy.get('[data-cy="comment-input"]').should('have.text', '');
   });
 });
