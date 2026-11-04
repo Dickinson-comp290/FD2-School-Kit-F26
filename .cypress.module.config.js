@@ -2,6 +2,8 @@ import { defineConfig } from 'cypress';
 import { execSync } from 'child_process';
 import vitePreprocessor from 'cypress-vite';
 
+const installDbScript = new URL('./bin/installDB.bash', import.meta.url).pathname;
+
 export default defineConfig({
   screenshotOnRunFailure: false,
   video: false,
@@ -36,12 +38,12 @@ export default defineConfig({
           return null;
         },
         initDB() {
-          execSync('installDB.bash --current', { stdio: 'inherit' });
+          execSync(`${installDbScript} --current`, { stdio: 'inherit' });
           return null;
         },
       }),
         on('before:run', () => {
-          execSync('installDB.bash --current', { stdio: 'inherit' });
+          execSync(`${installDbScript} --current`, { stdio: 'inherit' });
           return null;
         });
     },
@@ -67,12 +69,12 @@ export default defineConfig({
           return null;
         },
         initDB() {
-          execSync('installDB.bash --current', { stdio: 'inherit' });
+          execSync(`${installDbScript} --current`, { stdio: 'inherit' });
           return null;
         },
       }),
         on('before:run', () => {
-          execSync('installDB.bash --current', { stdio: 'inherit' });
+          execSync(`${installDbScript} --current`, { stdio: 'inherit' });
           return null;
         });
     },

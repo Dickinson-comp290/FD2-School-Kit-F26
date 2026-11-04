@@ -58,7 +58,6 @@
         >
           <template v-slot:first>
             <BFormSelectOption
-              disabled
               data-cy="selector-option-0"
               key="null"
               value=""
@@ -252,7 +251,7 @@ export default {
   },
   data() {
     return {
-      selectedOption: this.selected,
+      selectedOption: this.selected ?? '',
       optionsObjects: this.processOptions(),
       isPopupVisible: false,
       popupSrc: '',
@@ -445,16 +444,19 @@ export default {
       this.$emit('valid', this.isValid);
     },
     selected() {
-      this.selectedOption = this.selected;
+      this.selectedOption = this.selected ?? '';
     },
     selectedOption() {
+      if (this.selectedOption == null) {
+        this.selectedOption = '';
+      }
       this.verifySelectedOption();
       /**
        * The selected option has changed. When the selection is changed by clicking
        * the trash icon to clear it, this event is emitted with '' as the payload.
        * @property {String} option the name of the newly selected option.
        */
-      this.$emit('update:selected', this.selectedOption);
+      this.$emit('update:selected', this.selectedOption ?? '');
     },
     options: {
       handler() {

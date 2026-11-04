@@ -24,13 +24,25 @@ export async function createObservationLog(
 ) {
   const farm = await getFarmOSInstance();
   const logCategoryMap = await getLogCategoryToTermMap();
+  const normalizedLogCategoryName = String(logCategoryName ?? '')
+    .trim()
+    .toLowerCase();
+  const displayLogCategoryName = String(logCategoryName ?? '').trim();
 
-  const observationName = observationDate + '_obs_' + logCategoryName;
+  const observationName =
+    observationDate + '_obs_' + (displayLogCategoryName || normalizedLogCategoryName);
+
+  const logCategoryTerm = logCategoryMap.get(normalizedLogCategoryName);
+  if (!logCategoryTerm) {
+    throw new Error(
+      `Unable to find log category for activity: "${logCategoryName}"`
+    );
+  }
 
   const logCategory = [
     {
       type: `taxonomy_term--log_category`,
-      id: logCategoryMap.get(logCategoryName).id,
+      id: logCategoryTerm.id,
     },
   ];
 
