@@ -26,6 +26,57 @@
       </BCol>
     </BRow>
 
+/////////////////
+
+  <BButton
+              v-on:click="navigateTo('/fd2/Observation/')"
+              class="launch-button"
+              variant="none"
+              id="Activity Observation-button"
+              data-cy="Activity Observation-button"
+            >
+              <div
+                class="button-content"
+                id="Activity Observation-content"
+                data-cy='Activity Observation
+                -content'
+              >
+                <div
+                  class="icon-area"
+                  id="Activity Observation-icon-area"
+                  data-cy="Activity Observation-icon-area"
+                >
+                  <img
+                    id="Activity Observation-icon"
+                    data-cy="Activity Observation-icon"
+                    src="data:image/svg+xml;base64,PHN2ZyBpZD0iTGF5ZXJfMSIgZW5hYmxlLWJhY2tncm91bmQ9Im5ldyAwIDAgNTExLjk1OSA1MTEuOTU5IiBoZWlnaHQ9IjUxMiIgdmlld0JveD0iMCAwIDUxMS45NTkgNTExLjk1OSIgd2lkdGg9IjUxMiIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBjbGlwLXJ1bGU9ImV2ZW5vZGQiIGZpbGwtcnVsZT0iZXZlbm9kZCI+PHBhdGggZD0ibTMxNS4wNyAyOTUuODNjNS4zODItNi4yOTggNC42MzktMTUuNzY3LTEuNjYtMjEuMTQ4bC0xNy40NTEtMTQuOTEyYy02LjI5OC01LjM4Mi0xNS43NjYtNC42MzktMjEuMTQ4IDEuNjYtNS4zODIgNi4yOTgtNC42MzkgMTUuNzY2IDEuNjYgMjEuMTQ4bDE3LjQ1MSAxNC45MTJjNi4yNjggNS4zNjMgMTUuNzQ3IDQuNjYgMjEuMTQ4LTEuNjZ6Ii8+PHBhdGggZD0ibTIyNC44MjUgMzEyLjE1NC0yMS40NTYgOC4xNThjLTcuNzQ0IDIuOTQ0LTExLjYzNCAxMS42MDgtOC42OSAxOS4zNTEgMi45MzcgNy44MjEgMTEuODA5IDExLjYxNyAxOS4zNTIgOC42OWwyMS40NTYtOC4xNThjNy43NDQtMi45NDQgMTEuNjM0LTExLjYwOCA4LjY5LTE5LjM1MS0yLjk0NS03Ljc0NC0xMS42MDYtMTEuNjM2LTE5LjM1Mi04LjY5eiIvPjxwYXRoIGQ9Im0yNzQuODc5IDM0MS4yMDMtOS4xMzggMjEuMDU3Yy0zLjI5OCA3LjYuMTg5IDE2LjQzNCA3Ljc4OSAxOS４MyEgNy４MTUgMy.yczIgMTYuNDMtLjExMiAxOS.3MyEtNy.3ODlsOS.1MyAtM jAuNTc YzM.  8LTcuNiAtMS.  85LTE2.  77 -7. 789 -19. 731 -7. 598 -3. 296 -16. 76 - . 19 -19. 731 7. 789 z Ii8+PHBhdGggZD0ibTQ5MC. 69MiAzOTkuNmMtM jMu Mzc t M jMu OTU3 LTYy LjkzM y t M jUu MDIx LTAu NzkzM iLCBh ZWxl YWxs ZWxl YWxs ZWxl YWxs ZWxl YWxs ZWxl YWxs ZWxl YWxs ZWxl YWxs ZWxl YWxs ZWxl YWxs ZWxl YWxs ZWxl YWxs ZWxl YWxs ZWxl YWxs ZWxl Y WFs a WFs a WFs a WFs a WFs a WFs a WFs a WFs a WFs a WFs a WFs a WFs a WFs a WFs a WFs a WFs a WFs a WFs a WFs a W Fs a WF s a WF s a WF s a WF s a WF s a WF s a WF s a WF s a WF s	a WF s	a WF s	a WF s	a WF s	a WF s	a WF s	a WF s	a WF s	a WF s	a WF s	a WF s	a WF s	a WF	s	aWFs	awfs	awfs	awfs	awfs	awfs	awfs	awfs	awfs	awfs	awfs	awfs	awfs	awfs	awfs	awfs	awfs	awfs	awfs	awfs	awfs	awfs	awfs	awfs	awfs	awfs	awfs	aw fs aw fs aw fs aw fs aw fs aw fs aw fs aw fs aw fs aw fs aw fs aw fs aw fs aw fs aw fs aw fs aw fs aw fs aw fs aw fs aw	fs.aw	fs.aw	fs.aw	fs.aw	fs.aw	fs.aw	fs.aw	fs.aw	fs.aw_fs_aws_fs_aws_fs_aws_fs_aws_fs_aws_fs_aws_fs_aws_fs_aws_fs_aws_fs_aws_fs_aws_fs_aws_fs_aws_fs_aws_fs_aws_fs_aws_fs_aws_fs_aws_fs_aws_fs_aws_fs_aws_fs_aws_fd_fd_fd_fd_fd_fd_fd_fd_fd_fd_fd_fd_fd_fd_fd_fd_fd_fd_fd_fd_fd_fd_fd_fd_fd_fd_fd_fd_fd_fd_fd_fd	fd	fd	fd	fd	fd	fd	fd	fd	fd	fd	fd	fd	fd	fd	fd	fd	fd fd fd fd fd fd fd fd fd fd fd fd fd fd fd fd fd fd fd fd.fd.fd.fd.fd.fd.fd.fd.fd.fd.fd.fd.fd.fd.fd.fd.fd.fd.fd.fd.fd.fd.fd.fd.fd.fd.fd(fd)
+                    alt='Activity_Observation'
+                    class='button-icon'
+                  />
+                </div>
+                <div
+                  class='text-area'
+                  id='Activity Observation-text-area'
+                  data-cy='Activity Observation-text-area'
+                >
+                  <span
+                    class='button-text'
+                    id='Activity Observation-text'  
+                    data-cy='Activity Observation-text'
+                    >Activity Observation</span
+                  >
+                </div>
+              </div>
+            </BButton>
+
+
+
+
+////////////////
+
+
+
+
     <div
       class="categories-container"
       id="launchpad-categories-container"
@@ -86,6 +137,8 @@
               </div>
             </BButton>
           </div>
+
+
 
           <div
             class="activity-item-wrapper"
