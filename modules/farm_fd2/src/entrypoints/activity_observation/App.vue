@@ -92,13 +92,22 @@
           "
           v-on:ready="createdCount++"
         />
-        <!-- Activity Type -->
+        <!-- Activity Type
         <SelectorBase
           id="activity-observation-type"
           data-cy="activity-observation-type"
           v-bind:options="['A', 'B', 'C']"
+          label="Select"
+    invalid-feedback-text="Selection cannot be empty."
+    v-bind:required="required"
+    v-bind:showValidityStyling="validity.showStyling"
+    v-on:add-clicked="handleAddClicked"
+    v-model:selected="form.selected"
+    v-on:valid="(valid) => (validity.selected = valid)"
+    v-on:ready="createdCount++"
+    v-bind:popupUrl="popupUrl"
           
-        />
+        /> -->
 
         <hr />
         <!-- Comment Box -->
@@ -152,7 +161,6 @@
   import SelectorBase from '@comps/SelectorBase/SelectorBase.vue';
   import * as uiUtil from '@libs/uiUtil/uiUtil.js';
   import { lib } from './lib.js';
-  import SelectorBase from '@components/SelectorBase/SelectorBase.vue';
 
   export default {
     components: {
@@ -160,7 +168,6 @@
       SelectorBase,
       CommentBox,
       SubmitResetButtons,
-      SelectorBase,
 
     },
     data() {
