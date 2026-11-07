@@ -92,6 +92,13 @@
           "
           v-on:ready="createdCount++"
         />
+        <!-- Activity Type -->
+        <SelectorBase
+          id="activity-observation-type"
+          data-cy="activity-observation-type"
+          v-bind:options="['A', 'B', 'C']"
+          
+        />
 
         <hr />
         <!-- Comment Box -->
@@ -145,6 +152,7 @@
   import SelectorBase from '@comps/SelectorBase/SelectorBase.vue';
   import * as uiUtil from '@libs/uiUtil/uiUtil.js';
   import { lib } from './lib.js';
+  import SelectorBase from '@components/SelectorBase/SelectorBase.vue';
 
   export default {
     components: {
@@ -152,6 +160,8 @@
       SelectorBase,
       CommentBox,
       SubmitResetButtons,
+      SelectorBase,
+
     },
     data() {
       return {
