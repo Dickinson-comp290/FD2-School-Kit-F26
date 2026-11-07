@@ -27,6 +27,7 @@ describe('Activity Observation: Submit/Reset Buttons component', () => {
 
   function populateForm() {
     cy.get('[data-cy="date-input"]').type(dayjs().format('1999-01-02'));
+    cy.get('[data-cy="selector-input"] option').should('contain', 'seeding');
     cy.get('[data-cy="selector-input"]').select('seeding');
 
     /*

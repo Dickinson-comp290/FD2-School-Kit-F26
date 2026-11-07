@@ -138,6 +138,7 @@
 </template>
 
 <script>
+  import * as farmosUtil from '@libs/farmosUtil/farmosUtil.js';
   import dayjs from 'dayjs';
   import DateSelector from '@comps/DateSelector/DateSelector.vue';
   import CommentBox from '@comps/CommentBox/CommentBox.vue';
@@ -411,8 +412,15 @@
      * by the individual Vue Components used in the page and this hook
      * will simply increment `this.createdCount`.
      */
-    created() {
+    async created() {
       this.createdCount++;
+      let logCategoryObjects = await farmosUtil.getLogCategories();
+      console.log('logCategoryObjects:', logCategoryObjects);
+
+      let logCategories = logCategoryObjects.map((category) => category.attributes.name);
+      console.log('logCategories:', logCategories);
+
+      this.activityTypes = logCategories;
 
       if (window.Cypress) {
         /*

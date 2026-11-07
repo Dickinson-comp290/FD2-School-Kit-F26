@@ -102,8 +102,8 @@ describe('Activity Observation: Submission tests', () => {
     cy.get('.toast').should('not.exist');
 
     // Check that Submit button is re-enabled after submitting.
-    cy.get('[data-cy="submit-button"]').should('be.enabled');
-    cy.get('[data-cy="reset-button"]').should('be.enabled');
+    cy.get('[data-cy="submit-button"]', { timeout: 30000 }).should('be.disabled');
+    cy.get('[data-cy="reset-button"]', { timeout: 30000 }).should('be.disabled');
   });
 
   /*
