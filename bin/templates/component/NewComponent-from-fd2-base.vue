@@ -117,6 +117,13 @@ export default {
   watch: {},
   created() {
     /*
+     * Emit a false valid event when the component is created. This should be removed 
+     * when the handleEvent method is connected to the base component's `valid` event 
+     * in the template.
+     */ 
+    this.$emit('valid', false);
+
+    /*
      * Add any initialization code here. This is typically calls to functions in the
      * `farmosUtil` library to retrieve data needed by the component from farmOS. For
      * example, a list of crops, locations or active plant assets.
@@ -128,11 +135,7 @@ export default {
      * how to implement these calls.
      */
 
-    /**
-     * Emit a valid event when the component is ready.  This can be removed once the
-     * handler for the valid event is connected to the base component in the template.
-     */ 
-    this.$emit('valid', true);
+
 
     /**
      * The component is ready for use.
