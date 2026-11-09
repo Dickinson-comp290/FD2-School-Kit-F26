@@ -75,6 +75,23 @@
           v-on:ready="createdCount++"
         />
 
+        <!-- Activity Type -->
+        <SelectorBase
+          id="activity-observation-type"
+          data-cy="activity-observation-type"
+          v-bind:options="selectorOptions"
+          required
+          v-bind:showValidityStyling="validity.show"
+          v-on:ready="createdCount++"
+          v-on:valid="
+            (valid) => {
+              validity.type = valid;
+            }
+          "
+          label="Type"
+          v-model:selected="form.selected"
+        />
+
         <!-- 
           Add additional form elements here.
         
@@ -136,12 +153,14 @@
   import SubmitResetButtons from '@comps/SubmitResetButtons/SubmitResetButtons.vue';
   import * as uiUtil from '@libs/uiUtil/uiUtil.js';
   import { lib } from './lib.js';
+  import SelectorBase from '@comps/SelectorBase/SelectorBase.vue';
 
   export default {
     components: {
       DateSelector,
       CommentBox,
       SubmitResetButtons,
+      SelectorBase,
     },
     data() {
       return {
@@ -157,6 +176,7 @@
          */
         form: {
           date: dayjs().format('YYYY-MM-DD'),
+          selected: null,
           comment: null,
         },
         /*
@@ -183,6 +203,7 @@
           show: false,
           date: false,
           comment: false,
+          selected: false,
         },
 
         /*
@@ -210,6 +231,8 @@
          * property below for more information.
          */
         createdCount: 0,
+
+        selectorOptions: ['Seeding', 'Transplanting', 'Tillage'],
       };
     },
     computed: {
@@ -238,7 +261,7 @@
        * when all of the components are fully ready.
        */
       pageDoneLoading() {
-        return this.createdCount == 4;
+        return this.createdCount == 5;
       },
       /*
        * The Submit button will be enabled when this property is true.
@@ -380,6 +403,8 @@
         }
 
         /* Always reset the non-sticky values. */
+        this.form.selected = '';
+
         this.form.comment = '';
       },
     },
