@@ -92,4 +92,3 @@ activity_observation:
   css:
     component:
       style/style.css: {}
-    

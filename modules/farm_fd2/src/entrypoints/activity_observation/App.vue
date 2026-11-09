@@ -79,28 +79,19 @@
         <SelectorBase
           id="activity-observation-type"
           data-cy="activity-observation-type"
-          v-bind:options="selectorOptions"
           required
+          label="Type"
+          invalidFeedbackText="An activity type is required."
+          v-bind:options="activityTypes"
+          v-model:selected="form.type"
           v-bind:showValidityStyling="validity.show"
-          v-on:ready="createdCount++"
           v-on:valid="
             (valid) => {
               validity.type = valid;
             }
           "
-          label="Type"
-          v-model:selected="form.selected"
+          v-on:ready="createdCount++"
         />
-
-        <!-- 
-          Add additional form elements here.
-        
-          See the FarmData2 documentation for links to the documentation
-          for the custom FarmData2 Vue Components.
-
-          See the BootstrapVueNext documentation for links to the 
-          documentation for its Vue Components.
-        -->
 
         <hr />
         <!-- Comment Box -->
@@ -151,19 +142,21 @@
   import DateSelector from '@comps/DateSelector/DateSelector.vue';
   import CommentBox from '@comps/CommentBox/CommentBox.vue';
   import SubmitResetButtons from '@comps/SubmitResetButtons/SubmitResetButtons.vue';
+  import SelectorBase from '@comps/SelectorBase/SelectorBase.vue';
   import * as uiUtil from '@libs/uiUtil/uiUtil.js';
   import { lib } from './lib.js';
-  import SelectorBase from '@comps/SelectorBase/SelectorBase.vue';
 
   export default {
     components: {
       DateSelector,
+      SelectorBase,
       CommentBox,
       SubmitResetButtons,
-      SelectorBase,
     },
     data() {
       return {
+        activityTypes: ['seeding', 'transplanting', 'tillage'],
+
         /*
          * The `data.form` object is used to hold all of the data that is
          * collected from the form. This data is stored in a single
@@ -176,7 +169,7 @@
          */
         form: {
           date: dayjs().format('YYYY-MM-DD'),
-          selected: null,
+          type: null,
           comment: null,
         },
         /*
@@ -201,9 +194,9 @@
          */
         validity: {
           show: false,
+          type: false,
           date: false,
           comment: false,
-          selected: false,
         },
 
         /*
@@ -231,8 +224,6 @@
          * property below for more information.
          */
         createdCount: 0,
-
-        selectorOptions: ['Seeding', 'Transplanting', 'Tillage'],
       };
     },
     computed: {
@@ -303,7 +294,7 @@
        * the `v-on:submit` binding in the `SubmitResetButtons` Vue Component
        * in the `<template>` above.
        */
-      async submit() {
+      submit() {
         this.submitting = true;
         this.validity.show = true;
 
@@ -319,56 +310,59 @@
             'success'
           );
 
-          try {
-            /*
-             * Use the `submitForm()` function in `lib.js` to build
-             * assets, logs and quantities based on the values in `data.form`
-             * and submit them to farmOS.  We pass a copy of this.form so
-             * that the tests in activity_observation.submission.e2e.cy.js and
-             * activity_observation.submitError.e2e.cy.js have their own copy that
-             * is not modified when the form is reset during testing.
-             */
-            await lib.submitForm({ ...this.form });
-
-            /*
-             * If we get here, submitForm did not throw an error and
-             * we know that the submission was successful. So hide
-             * the status message and display a success message. Then
-             * reset the form and enable the Submit and Reset buttons
-             * when the success message is dismissed.
-             */
-            uiUtil.hideToast();
-            await uiUtil.showToast(
-              'Activity Observation created.',
-              '',
-              'top-center',
-              'success',
-              2
-            );
-
-            this.reset(true);
-            this.submitting = false;
-          } catch {
-            /*
-             * If we get here, the submitForm function threw an error.
-             * Hide the status message and display an error message.
-             */
-            if (!this.errorShown) {
+          /*
+           * Use the `submitForm()` function in `lib.js` to build
+           * assets, logs and quantities based on the values in `data.form`
+           * and submit them to farmOS.  We pass a copy of this.form so
+           * that the tests in activity_observation.submission.e2e.cy.js and
+           * activity_observation.submitError.e2e.cy.js have their own copy that
+           * is not modified when the form is reset during testing.
+           */
+          lib
+            .submitForm({ ...this.form })
+            .then(() => {
+              /*
+               * If we get here, the submission was successful, so hide
+               * the status message and display a success message. Then
+               * reset the form and enable the Submit and Reset buttons
+               * when the success message is dismissed.
+               */
               uiUtil.hideToast();
-              this.errorShowing = true;
-
-              await uiUtil.showToast(
-                'Error creating Activity Observation records.',
-                'Check your network connection and try again.',
-                'top-center',
-                'danger',
-                5
-              );
-
-              this.submitting = false;
-              this.errorShowing = false;
-            }
-          }
+              uiUtil
+                .showToast(
+                  'Activity Observation created.',
+                  '',
+                  'top-center',
+                  'success',
+                  2
+                )
+                .then(() => {
+                  this.reset(true);
+                  this.submitting = false;
+                });
+            })
+            .catch(() => {
+              /*
+               * If we get here, the submission failed, so hide the status
+               * message and display an error message.
+               */
+              if (!this.errorShown) {
+                uiUtil.hideToast();
+                this.errorShowing = true;
+                uiUtil
+                  .showToast(
+                    'Error creating Activity Observation records.',
+                    'Check your network connection and try again.',
+                    'top-center',
+                    'danger',
+                    5
+                  )
+                  .then(() => {
+                    this.submitting = false;
+                    this.errorShowing = false;
+                  });
+              }
+            });
         } else {
           this.submitting = false;
         }
@@ -400,11 +394,10 @@
         if (!sticky) {
           /* Reset is not sticky, so also reset the sticky values. */
           this.form.date = dayjs().format('YYYY-MM-DD');
+          this.form.type = null;
         }
 
         /* Always reset the non-sticky values. */
-        this.form.selected = '';
-
         this.form.comment = '';
       },
     },
