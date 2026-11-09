@@ -21,6 +21,9 @@ describe('Activity Observation: Submission tests', () => {
      * TODO: Add code to fill in values for other fields as they
      *       are added to the input form.
      */
+    cy.get('[data-cy="activity-observation-type"]')
+      .find('[data-cy="selector-input"]')
+      .select('Seeding');
 
     cy.get('[data-cy="comment-input"]').type('test comment');
     cy.get('[data-cy="comment-input"]').blur();
@@ -81,6 +84,7 @@ describe('Activity Observation: Submission tests', () => {
        * TODO: Add checks for the other parts of the formData
        *       as they are added to the input form.
        */
+      expect(formData.activityType).to.equal('Seeding');
       expect(formData.comment).to.equal('test comment');
     });
 

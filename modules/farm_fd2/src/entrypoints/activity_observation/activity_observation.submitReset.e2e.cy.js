@@ -31,6 +31,9 @@ describe('Activity Observation: Submit/Reset Buttons component', () => {
     /*
      * TODO: Populate additional elements of the form with valid values.
      */
+    cy.get('[data-cy="activity-observation-type"]')
+      .find('[data-cy="selector-input"]')
+      .select('Seeding');
 
     cy.get('[data-cy="comment-input"]').type('This is a comment');
     cy.get('[data-cy="comment-input"]').blur();
@@ -76,6 +79,9 @@ describe('Activity Observation: Submit/Reset Buttons component', () => {
      * are reset here. Note that this is not a sticky reset so all
      * components should be reset to their default values.
      */
+    cy.get('[data-cy="activity-observation-type"]')
+      .find('[data-cy="selector-input"]')
+      .should('have.value', null);
 
     cy.get('[data-cy="comment-input"]').should('have.value', '');
 

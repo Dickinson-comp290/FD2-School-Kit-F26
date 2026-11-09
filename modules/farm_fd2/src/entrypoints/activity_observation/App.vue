@@ -74,6 +74,19 @@
           "
           v-on:ready="createdCount++"
         />
+        <!-- Activity Type -->
+        <SelectorBase
+          id="activity-observation-type"
+          data-cy="activity-observation-type"
+          label="Activity Type"
+          invalidFeedbackText="Please select an activity type."
+          required
+          v-bind:options="['Seeding', 'Transplanting', 'Tillage']"
+          v-bind:showValidityStyling="validity.show"
+          v-model:selected="form.activityType"
+          v-on:valid="validity.activityType = $event"
+          v-on:ready="createdCount++"
+        />
 
         <!-- 
           Add additional form elements here.
@@ -131,6 +144,7 @@
 
 <script>
   import dayjs from 'dayjs';
+  import SelectorBase from '@comps/SelectorBase/SelectorBase.vue';
   import DateSelector from '@comps/DateSelector/DateSelector.vue';
   import CommentBox from '@comps/CommentBox/CommentBox.vue';
   import SubmitResetButtons from '@comps/SubmitResetButtons/SubmitResetButtons.vue';
@@ -142,6 +156,7 @@
       DateSelector,
       CommentBox,
       SubmitResetButtons,
+      SelectorBase,
     },
     data() {
       return {
@@ -157,6 +172,7 @@
          */
         form: {
           date: dayjs().format('YYYY-MM-DD'),
+          activityType: '',
           comment: null,
         },
         /*
@@ -182,6 +198,7 @@
         validity: {
           show: false,
           date: false,
+          activityType: false,
           comment: false,
         },
 
@@ -238,7 +255,7 @@
        * when all of the components are fully ready.
        */
       pageDoneLoading() {
-        return this.createdCount == 4;
+        return this.createdCount == 5;
       },
       /*
        * The Submit button will be enabled when this property is true.
@@ -380,6 +397,7 @@
         }
 
         /* Always reset the non-sticky values. */
+        this.form.activityType = '';
         this.form.comment = '';
       },
     },
