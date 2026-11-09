@@ -129,6 +129,12 @@ export default {
      */
 
     /**
+     * Emit a valid event when the component is ready.  This can be removed once the
+     * handler for the valid event is connected to the base component in the template.
+     */ 
+    this.$emit('valid', true);
+
+    /**
      * The component is ready for use.
      */
     this.$emit('ready');
