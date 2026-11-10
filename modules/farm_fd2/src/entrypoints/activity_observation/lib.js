@@ -46,8 +46,8 @@ async function submitForm(form) {
      *           `libraries/farmosUtil.js` for detailed information about
      *           the operation objects.
      */
-    const sampleOp = {
-      name: 'sampleOp',
+    const observationOp = {
+      name: 'observationOp',
       do: async () => {
         /*
          * Add a little delay here so to be sure the e2e tests have
@@ -60,18 +60,18 @@ async function submitForm(form) {
          * Create and return the asset, log or quantity for
          * this operation using the functions in farmosUtil.
          */
-        return await farmosUtil.createPlantAsset(
+        return await farmosUtil.createObservationLog(
           form.date,
-          'ZUCCHINI', // Just for sampleOp because crop not in App.vue form.
+          form.type,
           form.comment
         );
       },
       undo: async (results) => {
-        await farmosUtil.deletePlantAsset(results['sampleOp'].id);
+        await farmosUtil.deleteObservationLog(results['observationOp'].id);
       },
     };
     // Add the operation to the ops for the transaction.
-    ops.push(sampleOp);
+    ops.push(observationOp);
 
     // Run all of the operations in ops as a transaction.
     return await farmosUtil.runTransaction(ops);
