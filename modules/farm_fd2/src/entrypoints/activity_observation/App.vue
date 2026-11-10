@@ -75,13 +75,11 @@
           v-on:ready="createdCount++"
         />
 
-        <!-- Activity Type -->
         <SelectorBase
           id="activity-observation-type"
           data-cy="activity-observation-type"
+          label="Type:"
           required
-          label="Type"
-          invalidFeedbackText="An activity type is required."
           v-bind:options="activityTypes"
           v-model:selected="form.type"
           v-bind:showValidityStyling="validity.show"
@@ -145,6 +143,7 @@
   import SelectorBase from '@comps/SelectorBase/SelectorBase.vue';
   import * as uiUtil from '@libs/uiUtil/uiUtil.js';
   import { lib } from './lib.js';
+  import * as farmosUtil from '@libs/farmosUtil/farmosUtil.js';
 
   export default {
     components: {
@@ -411,7 +410,15 @@
      * by the individual Vue Components used in the page and this hook
      * will simply increment `this.createdCount`.
      */
-    created() {
+    async created() {
+      let logCategoryObjects = await farmosUtil.getLogCategories();
+      console.log('logCategoryObjects:', logCategoryObjects);
+
+      let logCategories = logCategoryObjects.map(
+        (category) => category.attributes.name
+      );
+      console.log('logCategories:', logCategories);
+
       this.createdCount++;
 
       if (window.Cypress) {
