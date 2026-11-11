@@ -1,0 +1,22 @@
+## Copilot Reviews
+
+- At the start of every review, review the current workspace state from scratch. Do not reuse conclusions from an earlier review, regardless of branch changes.
+- The prompt will identify the criteria to be used for the review. Find the file in the `.github/criteria` directory corresponding to the criteria indicated in the prompt. Read the criteria to be used for the review from that file. This is the only criteria to be used for the review. Do not use any other criteria or information.
+- Review only files inside `modules/farm_fd2/src/entrypoints/activity_observation/`.
+- Do not edit files or make commits while reviewing.
+- Ignore typos and minor naming differences when deciding whether a criterion is met, unless they prevent the described behavior from working.
+- Each level-two heading in the criteria file defines a "Section"
+- Each unindented bullet in a "Section" defines a "Primary Criterion." A "Section" can contain more than one "Primary Criterion." Treat each bullet as a separate "Primary Criterion," even when bullets are related.
+- Each bullet indented under a "Primary Criterion" indicates a "Secondary Criterion" for that "Primary Criterion." A "Primary Criterion" can have more than one "Secondary Criterion."
+- Report the results of the review as follows:
+  - Create a level-two heading for each "Section" of the criteria.
+  - Create a table within each "Section" with exactly three columns, in this order: `Criteria`, `Status`, `Evidence`.
+  - Create exactly one row in the table for each "Primary Criterion." Never combine more than one "Primary Criterion" into a single row. Never split a "Primary Criterion" across more than one row. Never add a row in the table for a "Secondary Criterion."
+  - In the `Criteria` cell, summarize the "Primary Criterion."
+  - Place a ✅ in the `Status` cell if the "Primary Criterion" and all associated "Secondary Criterion" are satisfied.
+  - Place a ⚠️ in the `Status` cell if at least 50% of the "Secondary Criterion" are satisfied.
+  - Place a ❌ in the `Status` cell if less than 50% of the "Secondary Criterion" are satisfied.
+  - In the `Evidence` cell address the "Primary Criterion" and each "Secondary Criterion," indicating which are met and which are unmet. Provide supporting evidence from the source code for each criterion.
+- Before posting results, verify that each "Section"'s table row count exactly matches its number of unindented bullets. If the counts differ, correct the tables before responding.
+- Post the results generated to a comment on the pull request for the branch. If no pull request is open, post the results to the chat.
+- Use the exact headings and tables prepared; do not rewrite, revise, expand, or condense them when posting. Do not include an introduction, summary, verdict, explanation, completion message, or other prose in the PR comment. Do not post only a summary of the tables.

@@ -12,6 +12,9 @@ function usage {
   echo "  -d|--dev: Create the new entry component from the current branch"
   echo "            instead of from the development branch."
   echo "            This is useful for testing changes to the templates."
+  echo "  -b|--from-base: Create a new entry component that will be built using"
+  echo "                  another FarmData2 component rather than using"
+  echo "                  Bootstrap-Vue-Next components."
   echo ""
   exit 255
 }
@@ -22,8 +25,8 @@ SCRIPT_DIR=$(dirname "$SCRIPT_PATH")                # Path to directory containi
 REPO_ROOT_DIR=$(builtin cd "$SCRIPT_DIR/.." && pwd) # REPO root directory.
 
 # Process the command line flags
-FLAGS=$(getopt -o d::h::m:: \
-  --long dev::,help::,min:: \
+FLAGS=$(getopt -o d::h::b:: \
+  --long dev::,help::,from-base:: \
   -- "$@")
 error_check "Unrecognized option provided."
 eval set -- "$FLAGS"
@@ -32,6 +35,10 @@ while true; do
   case $1 in
     -d | --dev)
       DEV_FLAG=1
+      shift 2
+      ;;
+    -b | --from-base)
+      BASE_FLAG=1
       shift 2
       ;;
     -h | --help)
@@ -207,8 +214,13 @@ echo "  Created."
 COMPONENT_TEMPLATE_DIR="$SCRIPT_DIR/templates/component"
 
 echo "  Creating component's files from templates..."
-echo "    Creating $COMPONENT_NAME.vue from templates..."
-cp "$COMPONENT_TEMPLATE_DIR/NewComponent.vue" "$COMPONENT_SRC_DIR/$COMPONENT_NAME.vue"
+if [ "$BASE_FLAG" == "1" ]; then
+  echo "    Creating $COMPONENT_NAME.vue from base template..."
+  cp "$COMPONENT_TEMPLATE_DIR/NewComponent-from-fd2-base.vue" "$COMPONENT_SRC_DIR/$COMPONENT_NAME.vue"
+else
+  echo "    Creating $COMPONENT_NAME.vue from full template..."
+  cp "$COMPONENT_TEMPLATE_DIR/NewComponent.vue" "$COMPONENT_SRC_DIR/$COMPONENT_NAME.vue"
+fi
 sed -i "s/%COMPONENT_NAME%/$COMPONENT_NAME/g" "$COMPONENT_SRC_DIR/$COMPONENT_NAME.vue"
 sleep 1
 sed -i "s/%COMPONENT_ID%/$COMPONENT_ID/g" "$COMPONENT_SRC_DIR/$COMPONENT_NAME.vue"
