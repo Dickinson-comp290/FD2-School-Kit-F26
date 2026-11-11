@@ -12,17 +12,17 @@ describe('Activity Observation: Activity Type Component', () => {
     cy.saveSessionStorage();
   });
 
-  // it('Activity Type props are correct', () => {
-  //   cy.get('[data-cy="selector-required"]').should('be.visible');
-  //   cy.get('[data-cy="selector-label"]').should('have.text', 'Type:');
-  //   cy.get('[data-cy="selector-input"]').should('have.value', null);
+  it('Activity Type props are correct', () => {
+    cy.get('[data-cy="c"]').should('be.visible');
+    cy.get('[data-cy="selector-label"]').should('have.text', 'Type:');
+    cy.get('[data-cy="selector-input"]').should('have.value', null);
 
-  //   cy.get('[data-cy="selector-option-1"]').should('have.value', 'seeding');
-  //   cy.get('[data-cy="selector-option-3"]').should('have.value', 'tillage');
+    cy.get('[data-cy="selector-option-1"]').should('have.value', 'seeding');
+    cy.get('[data-cy="selector-option-3"]').should('have.value', 'tillage');
 
-  //   cy.get('[data-cy="selector-input"]').should('not.have.class', 'is-valid');
-  //   cy.get('[data-cy="selector-input"]').should('not.have.class', 'is-invalid');
-  // });
+    cy.get('[data-cy="selector-input"]').should('not.have.class', 'is-valid');
+    cy.get('[data-cy="selector-input"]').should('not.have.class', 'is-invalid');
+  });
 
   it('Activity Type exists, is visible, is enabled', () => {
     cy.get('[data-cy="activity-observation-type"]').should('exist');

@@ -456,4 +456,4 @@
   #activity-observation-comment {
     margin-bottom: 15px;
   }
-</style>
+</style>;         
