@@ -26,8 +26,34 @@ describe('Activity Observation: Activity Type Component', () => {
     cy.get('[data-cy="selector-label"]').should('have.text', 'Type:');
     cy.get('[data-cy="selector-input"]').should('have.value', null);
 
-    cy.get('[data-cy="selector-option-1"]').should('have.value', 'seeding');
-    cy.get('[data-cy="selector-option-3"]').should('have.value', 'tillage');
+    cy.get('[data-cy="selector-option-1"]').should('have.text', 'Amendment');
+    cy.get('[data-cy="selector-option-2"]').should('have.text', 'Grazing');
+    cy.get('[data-cy="selector-option-3"]').should('have.text', 'Harvest');
+    cy.get('[data-cy="selector-option-4"]').should('have.text', 'Irrigation');
+    cy.get('[data-cy="selector-option-5"]').should(
+      'have.text',
+      'Pest/Disease Control'
+    );
+    cy.get('[data-cy="selector-option-6"]').should('have.text', 'Seeding');
+    cy.get('[data-cy="selector-option-7"]').should(
+      'have.text',
+      'Cover Crop Seeding'
+    );
+    cy.get('[data-cy="selector-option-8"]').should(
+      'have.text',
+      'Direct Seeding'
+    );
+    cy.get('[data-cy="selector-option-9"]').should('have.text', 'Seeding Tray');
+    cy.get('[data-cy="selector-option-10"]').should('have.text', 'Termination');
+    cy.get('[data-cy="selector-option-11"]').should('have.text', 'Tillage');
+    cy.get('[data-cy="selector-option-12"]').should(
+      'have.text',
+      'Transplanting'
+    );
+    cy.get('[data-cy="selector-option-13"]').should(
+      'have.text',
+      'Weed Control'
+    );
 
     cy.get('[data-cy="selector-input"]').should('not.have.class', 'is-valid');
     cy.get('[data-cy="selector-input"]').should('not.have.class', 'is-invalid');
