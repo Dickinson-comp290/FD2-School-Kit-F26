@@ -160,3 +160,10 @@ farm.fd2_examples_tray_size_selector.content:
     _title: 'TraySizeSelector Example'
   requirements:
     _permission: 'access content'
+farm.fd2_examples_activity_type_selector.content:
+  path: '/fd2_examples/activity_type_selector'
+  defaults:
+    _controller: '\Drupal\farm_fd2_examples\Controller\FD2_Controller::content'
+    _title: 'ActivityTypeSelector'
+  requirements:
+    _permission: 'access content'
