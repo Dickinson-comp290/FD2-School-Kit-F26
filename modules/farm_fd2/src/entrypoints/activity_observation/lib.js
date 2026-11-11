@@ -31,6 +31,8 @@ async function submitForm(form) {
   try {
     let ops = [];
 
+    // createObservationLog(observationDate, logCategoryName, [comment])
+
     /*
      * This sampleOP creates a plant asset to illustrate how an operation works.
      *
@@ -46,32 +48,32 @@ async function submitForm(form) {
      *           `libraries/farmosUtil.js` for detailed information about
      *           the operation objects.
      */
-    const sampleOp = {
-      name: 'sampleOp',
+    const observationLog = {
+      name: 'observationLog',
       do: async () => {
         /*
          * Add a little delay here so to be sure the e2e tests have
          * enough time to see the "Submitting" toast.  Production
          * operations should not include this.
          */
-        await new Promise((r) => setTimeout(r, 2000));
+        // await new Promise((r) => setTimeout(r, 2000));
 
         /*
          * Create and return the asset, log or quantity for
          * this operation using the functions in farmosUtil.
          */
-        return await farmosUtil.createPlantAsset(
+        return await farmosUtil.createObservationLog(
           form.date,
-          'ZUCCHINI', // Just for sampleOp because crop not in App.vue form.
+          form.logCategory,
           form.comment
         );
       },
       undo: async (results) => {
-        await farmosUtil.deletePlantAsset(results['sampleOp'].id);
+        await farmosUtil.deleteObservationLog(results['observationLog'].id);
       },
     };
     // Add the operation to the ops for the transaction.
-    ops.push(sampleOp);
+    ops.push(observationLog);
 
     // Run all of the operations in ops as a transaction.
     return await farmosUtil.runTransaction(ops);
