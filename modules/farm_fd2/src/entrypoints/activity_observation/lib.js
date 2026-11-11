@@ -14,6 +14,35 @@ async function submitForm(form) {
     /*
      * Create a farmOS observation log documenting the activity observation.
      */
+    const observationOp = {
+      name: 'observationOp',
+      do: async () => {
+        /*
+         * Add a little delay here so to be sure the e2e tests have
+         * enough time to see the "Submitting" toast.  Production
+         * operations should not include this.
+         */
+        await new Promise((r) => setTimeout(r, 2000));
+
+        /*
+         * Create and return the asset, log or quantity for
+         * this operation using the functions in farmosUtil.
+         */
+        return await farmosUtil.createObservationLog(
+          form.date,
+          form.type,
+          form.comment
+        );
+      },
+      undo: async (results) => {
+        await farmosUtil.deleteObservationLog(results['observationOp'].id);
+      },
+    };
+    // Add the operation to the ops for the transaction.
+    ops.push(observationOp);
+
+    // Run all of the operations in ops as a transaction.
+    return await farmosUtil.runTransaction(ops);
     return await farmosUtil.createObservationLog(
       form.date,
       form.type,
