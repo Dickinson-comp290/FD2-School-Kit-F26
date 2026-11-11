@@ -11,12 +11,12 @@ describe('Test the Activity Observation lib submission', () => {
    */
   let form = {
     date: '1950-01-02',
-    crop: 'ZUCCHINI', // Not in the sample form, but needed for testing
+    type: 'seeding', // Not in the sample form, but needed for testing
     comment: 'A comment',
   };
 
   let results = null;
-  let cropMap = null;
+  let logCategoryMap = null;
   before(() => {
     /*
      * TODO: Load any maps or other data from the API that will be needed
@@ -26,8 +26,8 @@ describe('Test the Activity Observation lib submission', () => {
      *         - modules/farm_fd2/src/entrypoints/tray_seeding
      *         - modules/farm_fd2/src/entrypoints/direct_seeding
      */
-    cy.wrap(farmosUtil.getCropNameToTermMap()).then((map) => {
-      cropMap = map;
+    cy.wrap(farmosUtil.getLogCategoryToTermMap()).then((map) => {
+      logCategoryMap = map;
     });
 
     /*
@@ -95,12 +95,12 @@ describe('Test the Activity Observation lib submission', () => {
    *         - modules/farm_fd2/src/entrypoints/tray_seeding
    *         - modules/farm_fd2/src/entrypoints/direct_seeding
    */
-  it('Activity Observation: Placeholder checks the sampleOp result', () => {
+  it('Activity Observation: Checks the observation log result', () => {
     /*
      * Check to be sure we get a plant asset.  This confirms that the lib.js
      * operation called the correct function.
      */
-    expect(results.sampleOp.type).to.equal('asset--plant');
+    expect(results.sampleOp.type).to.equal('log--observation');
 
     /*
      * Check the parts of the result that use the parameters that
@@ -111,12 +111,11 @@ describe('Test the Activity Observation lib submission', () => {
      * asset, or quantity in the farmOS database.
      */
     expect(results.sampleOp.attributes.name).to.equal(
-      form.date + '_' + form.crop
+      form.date + '_obs_' + form.type
     );
     expect(results.sampleOp.attributes.notes.value).to.equal(form.comment);
-    expect(results.sampleOp.relationships.plant_type[0].id).to.equal(
-      cropMap.get(form.crop).id
+    expect(results.sampleOp.relationships.category[0].id).to.equal(
+      logCategoryMap.get(form.type).id
     );
-    expect(results.sampleOp.relationships.parent).to.have.length(0);
   });
 });
