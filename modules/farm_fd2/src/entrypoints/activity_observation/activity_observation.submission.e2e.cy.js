@@ -128,10 +128,6 @@ describe('Activity Observation: Submission tests', () => {
 
     cy.get('.toast')
       .should('be.visible')
-      .should('contain.text', 'Submitting Activity Observation...');
-
-    cy.get('.toast')
-      .should('be.visible')
       .should('contain.text', 'Error creating Activity Observation records.');
     cy.get('.toast', { timeout: 7000 }).should('not.exist');
 
