@@ -1,13 +1,12 @@
 import { lib } from './lib';
-import * as farmosUtil from '@libs/farmosUtil/farmosUtil';
 
 describe('Test the Activity Observation lib submission', () => {
   /*
    * TODO: Create a form object that has the same format as the
    *       data.form object used in the entry point.
    *
-   *       This will be passed to the lib functions as if it is
-   *       coming from the entry point as a submission.
+   *       This is passed to the submitForm function as if it is
+   *       coming from the entry point when the "Submit" button is clicked.
    */
   let form = {
     date: '1950-01-02',
@@ -30,36 +29,13 @@ describe('Test the Activity Observation lib submission', () => {
       logCategoryMap = map;
     });
 
+  before(() => {
     /*
      * Submit the form using lib.submitForm from farmosUtil to create
      * all the logs, assets and quantities needed to represent a
      * Activity Observation.
      */
     cy.wrap(lib.submitForm(form), { timeout: 10000 }).then((submitted) => {
-      /*
-       * submitted (and results) is an object containing the log, asset and
-       * quantity objects that were submitted to farmOS by the lib.submitForm
-       * function. These objects are not the actual objects that exist in the
-       * farmOS database, they are the objects sent to farmOS to ask it to create
-       * the logs, assets and quantities in its database. The tests below will
-       * check that each of the objects in results contains the expected data
-       * from the form that was submitted.
-       *
-       * Note checking the results (and not the database objects) here is sufficient
-       * because:
-       *   - The *.submission.e2e.cy.js test checks that the correct data
-       *     is passed from the user interface to the submitForm function.
-       *   - Checking the results here confirms that lib.submitForm has passed the
-       *     correct form data to the farmosUtil library functions that create the
-       *     logs, assets and quantities in the farmOS database.
-       *   - The tests for the farmosUtil library functions confirm that they
-       *     create the correct objects in the farmOS database for the data that
-       *     they are given.
-       *   - We trust that farmOS then handles the additional aspects of creating
-       *     the logs, assets and quantities correctly. For example, if we create a
-       *     log with a movement, we check that the log references the correct asset.
-       *     But we do not check that the location of the asset has been updated.
-       */
       results = submitted;
     });
   });
@@ -98,17 +74,14 @@ describe('Test the Activity Observation lib submission', () => {
   it('Activity Observation: Checks the observation log result', () => {
     /*
      * Check to be sure we get a plant asset.  This confirms that the lib.js
-     * operation called the correct function.
+     * operation created the correct type of farmOS record.
      */
     expect(results.sampleOp.type).to.equal('log--observation');
 
     /*
      * Check the parts of the result that use the parameters that
-     * the lib.js operation passed to the farmosUtil.createPlantAsset
-     * function. It is only necessary to do enough checks to be sure
-     * that every parameter was passed correctly.  Tests for the
-     * farmosUtil functions confirm that they create the correct log,
-     * asset, or quantity in the farmOS database.
+     * the lib.js operation passed to the farmosUtil.createObservationLog
+     * function.
      */
     expect(results.sampleOp.attributes.name).to.equal(
       form.date + '_obs_' + form.type
