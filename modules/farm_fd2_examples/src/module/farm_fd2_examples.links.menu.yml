@@ -136,3 +136,9 @@ farm.fd2_examples_tray_size_selector:
   parent: farm.fd2_examples_component_examples
   route_name: farm.fd2_examples_tray_size_selector.content
   weight: 100
+farm.fd2_examples_activity_type_selector:
+  title: 'ActivityTypeSelector'
+  description: 'Example of the use of the ActivityTypeSelector component.'
+  parent: farm.fd2_examples_component_examples
+  route_name: farm.fd2_examples_activity_type_selector.content
+  weight: 100
