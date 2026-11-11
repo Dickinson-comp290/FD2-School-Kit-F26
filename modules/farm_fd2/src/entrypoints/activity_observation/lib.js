@@ -60,9 +60,15 @@ async function submitForm(form) {
          * Create and return the asset, log or quantity for
          * this operation using the functions in farmosUtil.
          */
-        return await farmosUtil.createPlantAsset(
+        /*return await farmosUtil.createPlantAsset(
           form.date,
           'ZUCCHINI', // Just for sampleOp because crop not in App.vue form.
+          form.comment
+        );*/
+
+        return await farmosUtil.createObservationLog(
+          form.date,
+          form.type,
           form.comment
         );
       },
