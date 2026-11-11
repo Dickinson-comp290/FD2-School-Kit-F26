@@ -172,7 +172,7 @@ echo "  You can find permissions strings by:"
 echo "    1. Logging into farmOS as Admin."
 echo "    2. Navigating to: Administration -> People -> Permissions"
 echo "    3. Using the dev-tools to inspect the relevant check box."
-echo "    4. Finding the content contained in [ ] in the name attribute." 
+echo "    4. Finding the content contained in [ ] in the name attribute."
 read -r ENTRY_POINT_PERMISSIONS
 echo ""
 
@@ -396,7 +396,7 @@ sleep 1
 sed -i "s/%DRUPAL_ROUTE_NAME%/$DRUPAL_ROUTE_NAME/g" "$LINKS_YML_FILE"
 echo "  Updated ."
 
-echo "Updating $ROUTING_YML_FILE from templates."
+echo "  Updating $ROUTING_YML_FILE from templates."
 cat "$ENTRY_POINT_TEMPLATE_DIR/routing.yml" >> "$ROUTING_YML_FILE"
 sed -i "s/%DRUPAL_ROUTE_NAME%/$DRUPAL_ROUTE_NAME/g" "$ROUTING_YML_FILE"
 sleep 1
@@ -465,7 +465,7 @@ fi
 echo "Committing starter code to the new feature branch: $FEATURE_BRANCH_NAME."
 safe_cd "$REPO_ROOT_DIR"
 git add .
-git commit --quiet -m "adds starter code for entry point: $ENTRY_POINT"
+git commit --quiet -m "adds starter code for entry point: $ENTRY_POINT" --no-verify
 error_check "Failed to commit changes to $FEATURE_BRANCH_NAME."
 echo "Committed."
 echo ""

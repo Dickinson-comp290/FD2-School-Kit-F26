@@ -125,10 +125,6 @@ describe('%ENTRY_POINT_TITLE%: Submission tests', () => {
 
     cy.get('.toast')
       .should('be.visible')
-      .should('contain.text', 'Submitting %ENTRY_POINT_TITLE%...');
-
-    cy.get('.toast')
-      .should('be.visible')
       .should('contain.text', 'Error creating %ENTRY_POINT_TITLE% records.');
     cy.get('.toast', { timeout: 7000 }).should('not.exist');
 

@@ -38,9 +38,9 @@ export async function createObservationLog(
     type: 'log--observation',
     attributes: {
       name: observationName,
-      timestamp: dayjs(observationDate).format(), //'2026-10-11T19:34:02.145Z',
+      timestamp: dayjs(observationDate).format(),
       status: 'done',
-      notes: comment,
+      notes: { value: comment },
     },
     relationships: {
       category: logCategory,
