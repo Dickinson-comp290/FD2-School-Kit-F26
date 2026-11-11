@@ -145,6 +145,7 @@
   import SelectorBase from '@comps/SelectorBase/SelectorBase.vue';
   import * as uiUtil from '@libs/uiUtil/uiUtil.js';
   import { lib } from './lib.js';
+  import * as farmosUtil from '@libs/farmosUtil/farmosUtil.js';
 
   export default {
     components: {
@@ -411,8 +412,15 @@
      * by the individual Vue Components used in the page and this hook
      * will simply increment `this.createdCount`.
      */
-    created() {
+    async created() {
+      let logCategoryObjects = await farmosUtil.getLogCategories();
+      console.log('logCategoryObjects:', logCategoryObjects);
       this.createdCount++;
+
+      let logCategories = logCategoryObjects.map(
+        (category) => category.attributes.name
+      );
+      console.log('logCategories:', logCategories);
 
       if (window.Cypress) {
         /*
