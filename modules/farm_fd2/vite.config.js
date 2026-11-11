@@ -8,7 +8,8 @@ import Components from 'unplugin-vue-components/vite';
 import { BootstrapVueNextResolver } from 'unplugin-vue-components/resolvers';
 
 let viteConfig = {
-  root: 'modules/farm_fd2/src/entrypoints',
+  //root: 'modules/farm_fd2/src/entrypoints',
+  root: fileURLToPath(new URL('./src/entrypoints/', import.meta.url)),
   publicDir: '../public',
   base: '/fd2/',
   plugins: [
