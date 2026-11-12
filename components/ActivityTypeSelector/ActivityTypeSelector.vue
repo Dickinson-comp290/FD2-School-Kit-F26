@@ -14,18 +14,18 @@
           Every element that might be used in a test should have an `id` and a 
           `data-cy` attribute.  The value of these attributes should be the same.
       -->
-      <p
-        id="placeholder"
-        data-cy="placeholder"
-      >
-        Select an activity type
-      </p>
+
       <SelectorBase
         id="activity-observation-type"
         data-cy="activity-observation-type"
         label="Type"
         invalidFeedbackText="An activity type is required."
-        v-bind:options="['A', 'B', 'C']"
+        v-bind:options="options"
+        v-bind:required="required"
+        v-bind:selected="selected"
+        v-bind:showValidityStyling="showValidityStyling"
+        v-on:valid="handleValid"
+        v-on:update:selected="handleUpdateSelected"
       />
     </BFormGroup>
   </div>
@@ -33,6 +33,7 @@
 
 <script>
   import SelectorBase from '@comps/SelectorBase/SelectorBase.vue';
+  import * as farmosUtil from '@libs/farmosUtil/farmosUtil';
 
   /*
    * Import any libraries or FarmData2 components being used in this component here.
@@ -76,7 +77,7 @@
      * events. Other events emitted by the base component will need to be relayed as well. See the
      * event handler methods below for examples of how to relay events from the base component.
      */
-    emits: ['ready', 'valid'],
+    emits: ['ready', 'valid', 'update:selected'],
     props: {
       /*
        * Every component will have props for `required` and `showValidityStyling`. These props
@@ -90,6 +91,12 @@
         type: Boolean,
         default: false,
       },
+
+      selected: {
+        type: String,
+        default: null,
+      },
+
       /**
        * Whether validity styling should appear on input elements.
        */
@@ -105,7 +112,9 @@
        */
     },
     data() {
-      return {};
+      return {
+        options: [],
+      };
     },
     computed: {},
     methods: {
@@ -121,31 +130,17 @@
          */
         this.$emit('valid', event);
       },
+
+      handleUpdateSelected(event) {
+        this.$emit('update:selected', event);
+      },
     },
     watch: {},
-    created() {
-      /*
-       * Emit a false valid event when the component is created. This should be removed
-       * when the handleEvent method is connected to the base component's `valid` event
-       * in the template.
-       */
-      this.$emit('valid', false);
-
-      /*
-       * Add any initialization code here. This is typically calls to functions in the
-       * `farmosUtil` library to retrieve data needed by the component from farmOS. For
-       * example, a list of crops, locations or active plant assets.
-       *
-       * The component must emit a `ready` event when it is fully initialized and ready for use.
-       * This event indicates that the component is ready to receive user input and can be used.
-       *
-       * Other components in the `components/` directory provide useful examples of
-       * how to implement these calls.
-       */
-
-      /**
-       * The component is ready for use.
-       */
+    async created() {
+      let logCategoryObjects = await farmosUtil.getLogCategories();
+      this.options = logCategoryObjects.map(
+        (category) => category.attributes.name
+      );
       this.$emit('ready');
     },
   };

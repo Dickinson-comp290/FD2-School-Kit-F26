@@ -33,10 +33,7 @@ describe('Test the default ActivityTypeSelector content', () => {
          * default data-cy elements exist and have the correct initial content.
          */
         cy.get('[data-cy="component-group"]').should('exist');
-        cy.get('[data-cy="placeholder"]').should(
-          'contain.text',
-          'Select an activity type'
-        );
+        cy.get('[data-cy="activity-observation-type"]').should('exist');
       });
   });
 });
