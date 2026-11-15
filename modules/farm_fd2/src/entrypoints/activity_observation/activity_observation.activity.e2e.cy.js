@@ -26,6 +26,12 @@ describe('Activity Observation: Activity Type Component', () => {
     cy.get('[data-cy="selector-label"]').should('have.text', 'Type:');
     cy.get('[data-cy="selector-input"]').should('have.value', null);
 
+    cy.get('[data-cy="selector-input"]')
+      .find('option[value="seeding"]')
+      .should('exist');
+    cy.get('[data-cy="selector-input"]')
+      .find('option[value="tillage"]')
+      .should('exist');
     cy.get('[data-cy="selector-option-1"]').should('have.value', 'amendment');
     cy.get('[data-cy="selector-option-13"]').should(
       'have.value',
