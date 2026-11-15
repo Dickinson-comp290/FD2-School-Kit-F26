@@ -32,6 +32,11 @@ describe('Activity Observation: Activity Type Component', () => {
     cy.get('[data-cy="selector-input"]')
       .find('option[value="tillage"]')
       .should('exist');
+    cy.get('[data-cy="selector-option-1"]').should('have.value', 'amendment');
+    cy.get('[data-cy="selector-option-13"]').should(
+      'have.value',
+      'weed_control'
+    );
 
     cy.get('[data-cy="selector-input"]').should('not.have.class', 'is-valid');
     cy.get('[data-cy="selector-input"]').should('not.have.class', 'is-invalid');
