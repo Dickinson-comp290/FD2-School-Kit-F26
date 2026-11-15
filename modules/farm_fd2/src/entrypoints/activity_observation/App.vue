@@ -76,13 +76,10 @@
         />
 
         <!-- Activity Type -->
-        <SelectorBase
+        <ActivityTypeSelector
           id="activity-observation-type"
           data-cy="activity-observation-type"
           required
-          label="Type"
-          invalidFeedbackText="An activity type is required."
-          v-bind:options="activityTypes"
           v-model:selected="form.type"
           v-bind:showValidityStyling="validity.show"
           v-on:valid="
@@ -140,23 +137,21 @@
 <script>
   import dayjs from 'dayjs';
   import DateSelector from '@comps/DateSelector/DateSelector.vue';
+  import ActivityTypeSelector from '@comps/ActivityTypeSelector/ActivityTypeSelector.vue';
   import CommentBox from '@comps/CommentBox/CommentBox.vue';
   import SubmitResetButtons from '@comps/SubmitResetButtons/SubmitResetButtons.vue';
-  import SelectorBase from '@comps/SelectorBase/SelectorBase.vue';
   import * as uiUtil from '@libs/uiUtil/uiUtil.js';
   import { lib } from './lib.js';
 
   export default {
     components: {
       DateSelector,
-      SelectorBase,
+      ActivityTypeSelector,
       CommentBox,
       SubmitResetButtons,
     },
     data() {
       return {
-        activityTypes: ['seeding', 'transplanting', 'tillage'],
-
         /*
          * The `data.form` object is used to hold all of the data that is
          * collected from the form. This data is stored in a single
