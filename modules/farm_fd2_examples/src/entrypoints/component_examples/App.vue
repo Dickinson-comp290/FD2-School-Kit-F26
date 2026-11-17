@@ -6,6 +6,9 @@
       <a href="active_plant_asset_picklist">ActivePlantAssetPicklist</a>: The ActivePlantAssetPicklist allows the user to pick crops from a location.
     </li>
     <li>
+      <a href="activity_type_selector">ActivityTypeSelector</a>: The ActivityTypeSelector is ... give a one line description of the component here.
+    </li>
+    <li>
       <a href="bed_picker">BedPicker</a>: The BedPicker component is a UI element that allows the user to select beds from a within a location.
     </li>
     <li>
