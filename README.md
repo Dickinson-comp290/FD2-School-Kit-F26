@@ -20,6 +20,8 @@ FarmData2 is not ready for production use. Current efforts are moving FarmData2 
 
 ## Using FarmData2
 
+jules :)
+
 FarmData2 is a plugin module for [farmOS](https://www.drupal.org/project/farm) and requires a running instance of farmOS (3.0 or later) and an internet connection.
 
 If you are familiar with hosting docker and database-backed websites you can [host your own instance of farmOS](https://farmos.org/hosting/install/). You can then install the latest release of the [FarmData2 Drupal Module](https://www.drupal.org/project/farmdata2) into your farmOS instance.
@@ -56,7 +58,7 @@ FarmData2 is thankful to the following organizations for their in-kind and finan
 
 - [Dickinson College](https://www.dickinson.edu/)
 - [farmOS](https://farmos.org/)
-- [The GNOME Community Engagement Challenge](https://www.gnome.org/challenge/)
+  <!-- - [The GNOME Community Engagement Challenge](https://www.gnome.org/challenge/) -->
 - [The National Science Foundation (DUE-2013069)](https://www.nsf.gov/awardsearch/showAward?AWD_ID=2013069)
 - [The Non-Profit FOSS Institute](https://npfi.org/)
 - [PASA Sustainable Agriculture](https://pasafarming.org/)
@@ -71,7 +73,7 @@ FarmData2 is thankful to the following organizations for their in-kind and finan
 
 ![Creative Commons Attribution-ShareAlike 4.0 International License](https://i.creativecommons.org/l/by-sa/4.0/88x31.png 'Creative Commons License') All textual materials in the FarmData2 project are released under a [Creative Commons Attribution-ShareAlike 4.0 International License](http://creativecommons.org/licenses/by-sa/4.0/)
 
-![GPL V3 or Later](https://www.gnu.org/graphics/gplv3-or-later-sm.png 'GPL V3 or later') All code in the FarmData2 project is released under the [GNU General Public License Version 3 or later](https://www.gnu.org/licenses/gpl.txt).
+<!-- ![GPL V3 or Later](https://www.gnu.org/graphics/gplv3-or-later-sm.png 'GPL V3 or later') All code in the FarmData2 project is released under the [GNU General Public License Version 3 or later](https://www.gnu.org/licenses/gpl.txt). -->
 
 <!-- vale write-good.Passive = YES -->
 
