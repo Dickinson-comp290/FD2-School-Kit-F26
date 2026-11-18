@@ -5,6 +5,7 @@ backmerged
 bashlint
 bedless
 bierner
+Halpin
 Braught
 buildx
 certbot
