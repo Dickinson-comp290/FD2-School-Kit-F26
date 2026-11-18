@@ -75,15 +75,23 @@
           v-on:ready="createdCount++"
         />
 
-        <!-- 
-          Add additional form elements here.
-        
-          See the FarmData2 documentation for links to the documentation
-          for the custom FarmData2 Vue Components.
-
-          See the BootstrapVueNext documentation for links to the 
-          documentation for its Vue Components.
-        -->
+        <!-- Activity Type -->
+        <SelectorBase
+          id="activity-observation-type"
+          data-cy="activity-observation-type"
+          required
+          label="Type"
+          invalidFeedbackText="An activity type is required."
+          v-bind:options="activityTypes"
+          v-model:selected="form.type"
+          v-bind:showValidityStyling="validity.show"
+          v-on:valid="
+            (valid) => {
+              validity.type = valid;
+            }
+          "
+          v-on:ready="createdCount++"
+        />
 
         <hr />
         <!-- Comment Box -->
@@ -136,15 +144,19 @@
   import SubmitResetButtons from '@comps/SubmitResetButtons/SubmitResetButtons.vue';
   import * as uiUtil from '@libs/uiUtil/uiUtil.js';
   import { lib } from './lib.js';
+  import SelectorBase from '@comps/SelectorBase/SelectorBase.vue';
 
   export default {
     components: {
+      SelectorBase,
       DateSelector,
       CommentBox,
       SubmitResetButtons,
     },
     data() {
       return {
+        activityTypes: ['seeding', 'transplanting', 'tillage'],
+
         /*
          * The `data.form` object is used to hold all of the data that is
          * collected from the form. This data is stored in a single
@@ -157,6 +169,7 @@
          */
         form: {
           date: dayjs().format('YYYY-MM-DD'),
+          type: null,
           comment: null,
         },
         /*
@@ -182,6 +195,7 @@
         validity: {
           show: false,
           date: false,
+          type: false,
           comment: false,
         },
 
@@ -238,7 +252,7 @@
        * when all of the components are fully ready.
        */
       pageDoneLoading() {
-        return this.createdCount == 4;
+        return this.createdCount == 5;
       },
       /*
        * The Submit button will be enabled when this property is true.
@@ -377,6 +391,7 @@
         if (!sticky) {
           /* Reset is not sticky, so also reset the sticky values. */
           this.form.date = dayjs().format('YYYY-MM-DD');
+          this.form.type = null;
         }
 
         /* Always reset the non-sticky values. */
