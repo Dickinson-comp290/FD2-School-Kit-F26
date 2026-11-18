@@ -8,139 +8,141 @@
       id="component-group"
       data-cy="component-group"
     >
-      <!-- Add FarmData2 components here to build this component. 
-          Other components in the `components/` directory provide useful examples.
-
-          Every element that might be used in a test should have an `id` and a 
-          `data-cy` attribute.  The value of these attributes should be the same.
-      -->
-      <p 
-        id="placeholder" 
-        data-cy="placeholder">
-          Replace this `p` element with your component content.
-      </p>
+      <DateSelector
+        id="activity-observation-date"
+        data-cy="activity-observation-date"
+        v-bind:date="date"
+        v-bind:required="required"
+        v-bind:showValidityStyling="showValidityStyling"
+        v-on:update:date="handleUpdateDate($event)"
+        v-on:valid="handleDateValid($event)"
+        v-on:ready="handleChildReady"
+      />
+      <SelectorBase
+        id="activity-observation-type"
+        data-cy="activity-observation-type"
+        v-bind:label="label"
+        invalidFeedbackText="An activity type is required."
+        v-bind:options="options"
+        v-bind:required="required"
+        v-bind:selected="selected"
+        v-bind:showValidityStyling="showValidityStyling"
+        v-on:update:selected="handleUpdateSelected($event)"
+        v-on:valid="handleTypeValid($event)"
+        v-on:ready="handleChildReady"
+      />
+      <CommentBox
+        id="activity-observation-comment"
+        data-cy="activity-observation-comment"
+        v-bind:comment="comment"
+        v-on:update:comment="handleUpdateComment($event)"
+        v-on:ready="handleChildReady"
+      />
     </BFormGroup>
   </div>
 </template>
 
 <script>
-/*
- * Import any libraries or FarmData2 components being used in this component here.
- */
-
-/**
- * The ActivityTypeSelelctor is ... give a one line description of the component here.
- * 
- * Longer description of the component can go here...
- *
- * ## Live Example
- * 
- * <a href="https://%HOST_NAME%/fd2_examples/activity_type_selelctor">The ActivityTypeSelelctor Example</a>
- *   - Example Source: <a href="./ActivityTypeSelelctor.ex.src.md">modules/farm_fd2_examples/src/entrypoints/activity_type_selelctor/App.vue</a>
- *   - Component Source: <a href="./ActivityTypeSelelctor.comp.src.md">components/ActivityTypeSelelctor/ActivityTypeSelelctor.vue</a>
- * 
- * ## Usage Example
- *
- * ```html
- * Include an example of how to add this component to a template.
- * This can often be pulled from the example page for the component.
- * See the other components in the `components` directory for samples.
- * ```
- *
- * ## `data-cy` Attributes
- *
- * Attribute Name        | Description
- * ----------------------| -----------
- * `component-group`     | The `BFormGroup` component containing this component.
- * `attr-value`          | Describe the purpose of all elements with `data-cy` attributes.
- */
-export default {
-  name: 'ActivityTypeSelelctor',
-  components: {
-    /*
-     * List the FarmData2 base component being used here.
-     */
-  },
   /*
-   * This component will relay all of the events from the FarmData2 base component that it uses.
-   * All of the FarmData2 components have `ready` event and `valid` events. The `ready` event
-   * indicates when the component is fully initialized and ready for use. The `valid` 
-   * events. Other events emitted by the base component will need to be relayed as well. See the
-   * event handler methods below for examples of how to relay events from the base component.
+   * Import any libraries or FarmData2 components being used in this component here.
    */
-  emits: ['ready', 'valid', ],
-  props: {
-    /*
-     * Every component will have props for `required` and `showValidityStyling`. These props
-     * will need to be passed on to the base component using `v-bind` in the template. 
-     */
+  import DateSelector from '@comps/DateSelector/DateSelector.vue';
+  import SelectorBase from '@comps/SelectorBase/SelectorBase.vue';
+  import CommentBox from '@comps/CommentBox/CommentBox.vue';
 
-    /**
-     * Whether a value for the input element is required or not.
-     */
-    required: {
-      type: Boolean,
-      default: false,
+  export default {
+    name: 'ActivityTypeSelelctor',
+    components: { DateSelector, SelectorBase, CommentBox },
+    emits: [
+      'ready',
+      'update:date',
+      'update:selected',
+      'update:comment',
+      'valid',
+    ],
+    props: {
+      comment: {
+        type: String,
+        default: null,
+      },
+
+      date: {
+        type: String,
+        default: undefined,
+      },
+      label: {
+        type: String,
+        default: 'Type',
+      },
+      options: {
+        type: Array,
+        default() {
+          return ['seeding', 'transplanting', 'tillage'];
+        },
+      },
+      required: {
+        type: Boolean,
+        default: false,
+      },
+
+      selected: {
+        type: String,
+        default: null,
+      },
+
+      showValidityStyling: {
+        type: Boolean,
+        default: false,
+      },
     },
-    /**
-     * Whether validity styling should appear on input elements.
-     */
-    showValidityStyling: {
-      type: Boolean,
-      default: false,
+    data() {
+      return {
+        dateValid: null,
+        typeValid: null,
+        childReadyCount: 0,
+        readyEmitted: false,
+      };
     },
-    /*
-     * Other props specific to the FarmDat2 base component need to be added here as necessary.  
-     * Each prop must have a doc comment (see above for examples) with a one line description
-     * of what the prop does. The doc comment is used when the documentation for the component 
-     * is generated.  Props should be added in alphabetical order.
-     */
-  },
-  data() {
-    return {};
-  },
-  computed: {},
-  methods: {
-    /*
-     * This method relays the `valid` event from the base component. It will need to be setup
-     * as the event handler for the `valid` event emitted by the base component in the template. 
-     * The comment and @property tag below should be edited to reflect the purpose of this component.
-     */
-    handleValid(event) {
-      /**
-       * The validity of the base component has changed.
-       * @property {boolean} event whether the base component is valid or not.
-       */
-      this.$emit('valid', event);
+    computed: {
+      isValid() {
+        if (this.dateValid === null || this.typeValid === null) {
+          return null;
+        }
+
+        return this.dateValid && this.typeValid;
+      },
     },
-  },
-  watch: {},
-  created() {
-    /*
-     * Emit a false valid event when the component is created. This should be removed 
-     * when the handleEvent method is connected to the base component's `valid` event 
-     * in the template.
-     */ 
-    this.$emit('valid', false);
+    methods: {
+      handleUpdateDate(date) {
+        this.$emit('update:date', date);
+      },
+      handleUpdateSelected(selected) {
+        this.$emit('update:selected', selected);
+      },
+      handleUpdateComment(comment) {
+        this.$emit('update:comment', comment);
+      },
+      handleDateValid(valid) {
+        this.dateValid = valid;
+      },
+      handleTypeValid(valid) {
+        this.typeValid = valid;
+      },
+      handleChildReady() {
+        this.childReadyCount++;
 
-    /*
-     * Add any initialization code here. This is typically calls to functions in the
-     * `farmosUtil` library to retrieve data needed by the component from farmOS. For
-     * example, a list of crops, locations or active plant assets.
-     * 
-     * The component must emit a `ready` event when it is fully initialized and ready for use. 
-     * This event indicates that the component is ready to receive user input and can be used.
-     *
-     * Other components in the `components/` directory provide useful examples of
-     * how to implement these calls.
-     */
-
-
-
-    /**
-     * The component is ready for use.
-     */
-    this.$emit('ready');
-  },
-};
+        if (this.childReadyCount === 3 && !this.readyEmitted) {
+          this.readyEmitted = true;
+          this.$emit('ready');
+        }
+      },
+    },
+    watch: {
+      isValid(valid) {
+        if (valid !== null) {
+          this.$emit('valid', valid);
+        }
+      },
+    },
+  };
 </script>

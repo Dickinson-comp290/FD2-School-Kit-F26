@@ -12,11 +12,6 @@ describe('Test the default ActivityTypeSelelctor content', () => {
   });
 
   it('Check all of the default data-cy elements', () => {
-    /*
-     * See the Components Guide (`docs/contributing/components.md` for more 
-     * information about component testing. Also, see other components in 
-     * the `components/` directory for examples.
-     */
     const readySpy = cy.spy().as('readySpy');
 
     cy.mount(ActivityTypeSelelctor, {
@@ -26,17 +21,66 @@ describe('Test the default ActivityTypeSelelctor content', () => {
     });
 
     cy.get('@readySpy')
-    .should('have.been.calledOnce')
-    .then(() => {
-      /*
-       * Replace this assertion with assertions that check that all of the
-       * default data-cy elements exist and have the correct initial content.
-       */
-      cy.get('[data-cy="component-group"]').should('exist');
-      cy.get('[data-cy="placeholder"]').should(
-        'contain.text',
-        'Replace this `p` element with your component content.'
-      );
+      .should('have.been.calledOnce')
+      .then(() => {
+        cy.get('[data-cy="component-group"]').should('exist');
+        cy.get('[data-cy="date-input"]').should('have.attr', 'type', 'date');
+        cy.get('[data-cy="selector-label"]').should('have.text', 'Type:');
+        cy.get('[data-cy="selector-option-1"]').should('have.text', 'seeding');
+        cy.get('[data-cy="selector-option-2"]').should(
+          'have.text',
+          'transplanting'
+        );
+        cy.get('[data-cy="selector-option-3"]').should('have.text', 'tillage');
+        cy.get('[data-cy="comment-input"]').should('be.visible');
+
+        cy.get('[data-cy="date-group"]').then(($dateGroup) => {
+          cy.get('[data-cy="selector-group"]').then(($selectorGroup) => {
+            expect(
+              $dateGroup[0].compareDocumentPosition($selectorGroup[0]) &
+                Node.DOCUMENT_POSITION_FOLLOWING
+            ).to.not.equal(0);
+          });
+        });
+
+        cy.get('[data-cy="selector-group"]').then(($selectorGroup) => {
+          cy.get('[data-cy="comment-input"]').then(($commentInput) => {
+            expect(
+              $selectorGroup[0].compareDocumentPosition($commentInput[0]) &
+                Node.DOCUMENT_POSITION_FOLLOWING
+            ).to.not.equal(0);
+          });
+        });
+      });
+  });
+
+  it('Check that the component props are correctly passed to the selector base subcomponent', () => {
+    const readySpy = cy.spy().as('readySpy');
+
+    cy.mount(ActivityTypeSelelctor, {
+      props: {
+        onReady: readySpy,
+        label: 'Activity Type',
+        options: ['irrigation', 'harvesting'],
+      },
     });
+
+    cy.get('@readySpy')
+      .should('have.been.calledOnce')
+      .then(() => {
+        cy.get('[data-cy="selector-label"]').should(
+          'have.text',
+          'Activity Type:'
+        );
+        cy.get('[data-cy="selector-option-1"]').should(
+          'have.text',
+          'irrigation'
+        );
+        cy.get('[data-cy="selector-option-2"]').should(
+          'have.text',
+          'harvesting'
+        );
+        cy.get('[data-cy="selector-option-3"]').should('not.exist');
+      });
   });
 });

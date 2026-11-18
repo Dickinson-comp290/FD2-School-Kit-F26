@@ -7,4 +7,8 @@ describe('Check that the activity_type_selelctor entry point in farm_fd2_example
     // Check that the page loads.
     cy.waitForPage();
   });
+  it('Check that the activity_type_selelctor component exists.', () => {
+    // Check that the component exists.
+    cy.get('activity-type-selelctor').should('exist');
+  });
 });

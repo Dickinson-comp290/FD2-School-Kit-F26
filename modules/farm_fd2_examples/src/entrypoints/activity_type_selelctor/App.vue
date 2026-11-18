@@ -19,6 +19,11 @@
         validity.valid = valid;
       }
     "
+    v-on:update:selected="
+      (selected) => {
+      form.selected = selected;
+    }
+    "
     v-on:ready="createdCount++"
   />
   <hr />
@@ -73,6 +78,10 @@
         <td>valid</td>
         <td>{{ validity.valid }}</td>
       </tr>
+      <tr>
+        <td>update:selected</td>
+        <td>{{ form.selected }}</td>
+      </tr>
     </tbody>
   </table>
 
@@ -102,6 +111,7 @@ export default {
     return {
       required: true,
       form: {
+        selected: null,
         /*
          * Add elements here to hold each of the values that this component collects.
          * This models how form data is collected in entry points, where the
