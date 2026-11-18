@@ -33,6 +33,7 @@
           v-bind:required="required"
           v-bind:showValidityStyling="showValidityStyling"
           v-on:update:selected="handleUpdateSelected"
+          v-bind:selected="selected"
       />
     </BFormGroup>
   </div>
@@ -86,6 +87,14 @@ export default {
    */
   emits: ['ready', 'valid', 'update:selected'],
   props: {
+    selected: {
+        type: String,
+        default: '',
+    },
+
+
+
+
     /*
      * Every component will have props for `required` and `showValidityStyling`. These props
      * will need to be passed on to the base component using `v-bind` in the template. 
