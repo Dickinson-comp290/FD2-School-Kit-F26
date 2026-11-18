@@ -1,31 +1,23 @@
 <template>
-  <!-- This extra div element is included to help with consistency in the 
-       tests.  Without it the BFormGroup can sometimes be optimized away 
-       making tests that use it in cy.get statements fail. 
-  -->
   <div>
     <BFormGroup
       id="component-group"
-      data-cy="component-group"
+      v-bind:data-cy="dataCy"
     >
-      <!-- Add FarmData2 components here to build this component. 
-          Other components in the `components/` directory provide useful examples.
-
-          Every element that might be used in a test should have an `id` and a 
-          `data-cy` attribute.  The value of these attributes should be the same.
-      -->
-
       <SelectorBase
-        id="activity-observation-type"
-        data-cy="activity-observation-type"
-        label="Type"
-        invalidFeedbackText="An activity type is required."
-        v-bind:options="options"
+        v-bind:id="id"
+        v-bind:data-cy="'selector'"
+        v-bind:label="label"
+        v-bind:invalidFeedbackText="invalidFeedbackText"
+        v-bind:options="computedOptions"
         v-bind:required="required"
         v-bind:selected="selected"
         v-bind:showValidityStyling="showValidityStyling"
+        v-bind:popupUrl="popupUrl"
         v-on:valid="handleValid"
         v-on:update:selected="handleUpdateSelected"
+        v-on:add-clicked="handleAddClicked"
+        v-on:ready="handleSelectorReady"
       />
     </BFormGroup>
   </div>
@@ -34,10 +26,6 @@
 <script>
   import SelectorBase from '@comps/SelectorBase/SelectorBase.vue';
   import * as farmosUtil from '@libs/farmosUtil/farmosUtil';
-
-  /*
-   * Import any libraries or FarmData2 components being used in this component here.
-   */
 
   /**
    * The ActivityTypeSelector is ... give a one line description of the component here.
@@ -70,20 +58,30 @@
     components: {
       SelectorBase,
     },
-    /*
-     * This component will relay all of the events from the FarmData2 base component that it uses.
-     * All of the FarmData2 components have `ready` event and `valid` events. The `ready` event
-     * indicates when the component is fully initialized and ready for use. The `valid`
-     * events. Other events emitted by the base component will need to be relayed as well. See the
-     * event handler methods below for examples of how to relay events from the base component.
-     */
-    emits: ['ready', 'valid', 'update:selected'],
-    props: {
-      /*
-       * Every component will have props for `required` and `showValidityStyling`. These props
-       * will need to be passed on to the base component using `v-bind` in the template.
-       */
 
+    emits: ['ready', 'valid', 'update:selected', 'add-clicked'],
+    props: {
+      dataCy: {
+        type: String,
+        required: true,
+      },
+
+      id: {
+        type: String,
+        required: true,
+      },
+      label: {
+        type: String,
+        default: 'Type',
+      },
+      invalidFeedbackText: {
+        type: String,
+        default: 'An activity type is required.',
+      },
+      options: {
+        type: Array,
+        default: null,
+      },
       /**
        * Whether a value for the input element is required or not.
        */
@@ -104,25 +102,28 @@
         type: Boolean,
         default: false,
       },
-      /*
-       * Other props specific to the FarmDat2 base component need to be added here as necessary.
-       * Each prop must have a doc comment (see above for examples) with a one line description
-       * of what the prop does. The doc comment is used when the documentation for the component
-       * is generated.  Props should be added in alphabetical order.
-       */
+
+      popupUrl: {
+        type: String,
+        default: null,
+      },
     },
     data() {
       return {
-        options: [],
+        fetchedOptions: [],
       };
     },
-    computed: {},
+    computed: {
+      computedOptions() {
+        return this.options !== null ? this.options : this.fetchedOptions;
+      },
+    },
     methods: {
-      /*
-       * This method relays the `valid` event from the base component. It will need to be setup
-       * as the event handler for the `valid` event emitted by the base component in the template.
-       * The comment and @property tag below should be edited to reflect the purpose of this component.
-       */
+      handleSelectorReady() {
+       if (this.options !== null) {
+          this.$emit('ready');
+        }
+      },
       handleValid(event) {
         /**
          * The validity of the base component has changed.
@@ -134,14 +135,19 @@
       handleUpdateSelected(event) {
         this.$emit('update:selected', event);
       },
+      handleAddClicked() {
+        this.$emit('add-clicked');
+      },
     },
-    watch: {},
+    
     async created() {
-      let logCategoryObjects = await farmosUtil.getLogCategories();
-      this.options = logCategoryObjects.map(
-        (category) => category.attributes.name
-      );
-      this.$emit('ready');
+      if (this.options === null) {
+        let logCategoryObjects = await farmosUtil.getLogCategories();
+        this.fetchedOptions = logCategoryObjects.map(
+          (category) => category.attributes.name
+        );
+        this.$emit('ready');
+      }
     },
   };
 </script>
