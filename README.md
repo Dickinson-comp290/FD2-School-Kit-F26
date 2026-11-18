@@ -1,6 +1,7 @@
 # FarmData2
 
-Welcome to FarmData2. FarmData2 aims to support the day-to-day operation of diversified vegetable farms while facilitating the record keeping necessary for organic certification and for the study of sustainable farming practices. Anna Magarelli
+This was edited by Anna.
+Welcome to FarmData2. FarmData2 aims to support the day-to-day operation of diversified vegetable farms while facilitating the record keeping necessary for organic certification and for the study of sustainable farming practices. Anna
 
 For example, FarmData2 forms enable farm workers to efficiently and reliably enter data about common operations at the time they occur:
 
@@ -24,13 +25,13 @@ FarmData2 is not ready for production use. Current efforts are moving FarmData2 
 
 FarmData2 is a plugin module for [farmOS](https://www.drupal.org/project/farm) and requires a running instance of farmOS (3.0 or later) and an internet connection.
 
-If you are familiar with hosting docker and database-backed websites you can [host your own instance of farmOS](https://farmos.org/hosting/install/). You can then install the latest release of the [FarmData2 Drupal Module](https://www.drupal.org/project/farmdata2) into your farmOS instance.
+If you are familiar with hosting docker and database-backed websites you can [host your own instance of farmOS](https://farmos.org/hosting/install/). You can then install the release of the [FarmData2 Drupal Module](https://www.drupal.org/project/farmdata2) into your farmOS instance.
 
-For those preferring a managed approach, [Farmier](https://farmier.com/) offers a subscription service where they create and host farmOS instances. FarmData2 hopes to be available on Farmier hosted instances of farmOS soon.
+For those preferring a managed approach, [Farmier](https://farmier.com/) offers a subscription service where they create and host farmOS instances. FarmData2 hopes to be available on Farmier hosted instances of farmOS.
 
 ## Help and Communications
 
-The FarmData2 community communicates on the [FarmData2 Zulip Chat](https://farmdata2.zulipchat.com). Feel free to get in touch there with questions, comments, and suggestions.
+The FarmData2 community communicates on the [FarmData2 Zulip Chat](https://farmdata2.zulipchat.com). Feel free to get in tap there with questions, comments, and suggestions.
 
 Feature requests and bug reports related to the operation of FarmData2 can reported in the [FarmData2 Issue Tracker](https://github.com/FarmData2/FarmData2/issues) on GitHub or discussed in the [FarmData2 Zulip Chat](https://farmdata2.zulipchat.com).
 
@@ -39,7 +40,7 @@ Feature requests and bug reports related to the operation of FarmData2 can repor
 <!-- vale Google.Colons = NO -->
 <!-- Words following colon here should be capitalized -->
 
-FarmData2 is a plugin module for [farmOS](https://farmos.org/). farmOS is a [Drupal](https://www.drupal.org/) application, but FarmData2 typically does not require knowledge of Drupal. Most of FarmData2 development will use web development technologies including: HTML, CSS, JavaScript, Vue.js, BootstrapVueNext. Other technologies used in FarmData2 include: GitHub flavored Markdown, JSDoc, Cypress, Bash scripts, Docker, Vite, git hooks, GitHub actions and npm.
+FarmData2 is a plugin module for [farmOS](https://farmos.org/). farmOS is a [Drupal](https://www.drupal.org/) app, but FarmData2 typically does not require knowledge of Drupal. Most of FarmData2 development will use web development technologies including: HTML, CSS, JavaScript, Vue.js, BootstrapVueNext. Other technologies used in FarmData2 include: GitHub flavored Markdown, JSDoc, Cypress, Bash scripts, Docker, Vite, git hooks, GitHub actions and npm.
 
 <!-- vale Google.Colons = YES -->
 
