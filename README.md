@@ -1,4 +1,36 @@
-on the [FarmData2 Zulip Chat](https://farmdata2.zulipchat.com). Feel free to get in touch there with questions, comments, and suggestions.
+# JULES
+
+Welcome to FarmData2. FarmData2 aims to support the day-to-day operation of diversified vegetable farms while facilitating the record keeping necessary for organic certification and for the study of sustainable farming practices. For example, FarmData2 forms enable farm workers to efficiently and reliably enter data about common operations at the time they occur:
+
+<table border=0>
+  <tr>
+    <td>
+      <a href="docs/images/TraySeeding.jpg"><img src="docs/images/TraySeeding.jpg" alt="The Tray Seeding Form" width="200" /></a>
+    </td>
+    <td>
+      <a href="docs/images/Transplanting.jpg"><img src="docs/images/Transplanting.jpg" alt="The Transplanting Form" width="200" /></a>
+    </td>
+    <td>
+      <a href="docs/images/DirectSeeding.jpg"><img src="docs/images/DirectSeeding.jpg" alt="The Direct Seeding Form" width="200" /></a>
+    </td>
+  </tr>
+</table>
+
+FarmData2 is not ready for production use. Current efforts are moving FarmData2 toward supporting a full growing season including seeding (tray, direct, cover crop), transplanting, soil amendment and disturbance, and harvesting.
+
+## Using FarmData2
+
+JULES!!!
+
+FarmData2 is a plugin module for [farmOS](https://www.drupal.org/project/farm) and requires a running instance of farmOS (3.0 or later) and an internet connection.
+
+If you are familiar with hosting docker and database-backed websites you can [host your own instance of farmOS](https://farmos.org/hosting/install/). You can then install the latest release of the [FarmData2 Drupal Module](https://www.drupal.org/project/farmdata2) into your farmOS instance.
+
+For those preferring a managed approach, [Farmier](https://farmier.com/) offers a subscription service where they create and host farmOS instances. FarmData2 hopes to be available on Farmier hosted instances of farmOS soon.
+
+## Help and Communications
+
+The FarmData2 community communicates on the [FarmData2 Zulip Chat](https://farmdata2.zulipchat.com). Feel free to get in touch there with questions, comments, and suggestions.
 
 Feature requests and bug reports related to the operation of FarmData2 can reported in the [FarmData2 Issue Tracker](https://github.com/FarmData2/FarmData2/issues) on GitHub or discussed in the [FarmData2 Zulip Chat](https://farmdata2.zulipchat.com).
 
