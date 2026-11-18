@@ -1,5 +1,7 @@
 # FarmData2
 
+
+BRIGID!
 Welcome to FarmData2. FarmData2 aims to support the day-to-day operation of diversified vegetable farms while facilitating the record keeping necessary for organic certification and for the study of sustainable farming practices. For example, FarmData2 forms enable farm workers to efficiently and reliably enter data about common operations at the time they occur:
 
 Mandy!
