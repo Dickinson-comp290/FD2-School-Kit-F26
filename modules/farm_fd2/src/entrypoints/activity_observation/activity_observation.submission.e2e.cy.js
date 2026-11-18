@@ -76,7 +76,7 @@ describe('Activity Observation: Submission tests', () => {
     cy.get('@submitFormSpy').then((spy) => {
       expect(spy).to.be.calledOnce;
 
-      let formData = spy.getCall(0).args[0];
+      const formData = spy.getCall(0).args[0];
       expect(formData.date).to.equal('1950-01-02');
       expect(formData.type).to.equal('seeding');
       /*
