@@ -227,3 +227,14 @@ tray_size_selector:
   css:
     component:
       style/style.css: {}
+
+activity_type_selector:
+  js:
+    activity_type_selector/activity_type_selector.js:
+      preprocess: false
+      minified: true
+      attributes: { type: 'module' }
+  css:
+    component:
+      style/style.css: {}
+    
