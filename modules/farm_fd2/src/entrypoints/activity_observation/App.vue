@@ -76,23 +76,17 @@
         />
 
         <!-- Activity Type -->
-        <SelectorBase
+        <ActivityTypeSelector
           id="activity-observation-type"
           data-cy="activity-observation-type"
-          required
-          label="Type"
-          invalidFeedbackText="An activity type is required."
-          v-bind:options="activityTypes"
+          :required="true"
           v-model:selected="form.type"
-          v-bind:showValidityStyling="validity.show"
-          v-on:valid="
-            (valid) => {
-              validity.type = valid;
-            }
-          "
-          v-on:ready="createdCount++"
+          :show-validity-styling="validity.show"
+          @valid="(valid) => {
+            validity.type = valid;
+          }"
+          @ready="createdCount++"
         />
-
         <hr />
         <!-- Comment Box -->
         <CommentBox
@@ -146,6 +140,7 @@
   import * as uiUtil from '@libs/uiUtil/uiUtil.js';
   import * as farmosUtil from '@libs/farmosUtil/farmosUtil.js';
   import { lib } from './lib.js';
+  import ActivityTypeSelector from '@comps/ActivityTypeSelector/ActivityTypeSelector.vue';
 
   export default {
     components: {
